@@ -1,4 +1,4 @@
 models:
   - name: "gpt-4"
-    api_key: "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"
+    api_key: "your-open-ai-api-key"
 
