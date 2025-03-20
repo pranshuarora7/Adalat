@@ -1,0 +1,21 @@
+1.1 main.py                     | /.
+1.2 document_indexer            | data
+2. bot_config.py                | /.
+3. process_input.py             | chatbot
+4.
+
+
+
+chatbot_ks_v2/
+│── chatbot/
+│   ├── coLang.py  ✅ Determines category using CoLang rules
+│   ├── process_input.py ✅ Cleans & preprocesses user input
+│
+│── models/
+│   ├── retriever.py ✅ Fetches documents from ChromaDB (NEW)
+│   ├── generator.py ✅ Generates responses using NeMo Guardrails
+│
+│── data/
+│   ├── index_documents.py ✅ Handles indexing of `.md` files into ChromaDB
+│
+│── main.py ✅ Ties everything together & runs the chatbot
