@@ -1,0 +1,3 @@
+[console_scripts]
+nemoguardrails=nemoguardrails.__main__:app
+

@@ -4,70 +4,253 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Legal Dashboard | Adalat</title>
-    <link rel="stylesheet" href="style.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700&family=Roboto&display=swap"
-        rel="stylesheet" />
+    <title>Legal Research Assistant</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet">
 </head>
 
 <body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="index.html">
+                <i class="fas fa-balance-scale"></i>
+                Legal Research Assistant
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="features.html">Features</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="testimonials.html">Testimonials</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown">
+                            <i class="fas fa-user-circle"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><a class="dropdown-item" href="profile.html">Profile</a></li>
+                            <li><a class="dropdown-item" href="settings.html">Settings</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="login.html">Login</a></li>
+                            <li><a class="dropdown-item" href="register.html">Register</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 
-    <div class="container">
-        <!-- Sidebar -->
-        <aside class="sidebar">
-            <h1 class="logo">Adalat</h1>
-            <nav class="nav">
-                <a href="#" class="nav-link active">🧠 My Chats ▼</a>
-                <a href="#" class="nav-link">📁 Similar Cases</a>
-                <a href="#" class="nav-link">📊 Win Calculator</a>
-            </nav>
-        </aside>
-
-        <!-- Main Content -->
-        <main class="main-content">
-            <header class="dashboard-header">
-                <h2>Welcome Back, Advocate Pranshu</h2>
-                <div class="profile">
-                    <img src="profile-icon.png" alt="Profile" class="profile-icon" />
-                    <span>My Profile</span>
+    <!-- Main Content -->
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar -->
+            <div class="col-md-3 col-lg-2 sidebar">
+                <div class="sidebar-header">
+                    <h4>Navigation</h4>
                 </div>
-            </header>
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="index.html">
+                            <i class="fas fa-comments"></i> My Chats
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="cases.html">
+                            <i class="fas fa-gavel"></i> Similar Cases
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="calculator.html">
+                            <i class="fas fa-calculator"></i> Win Calculator
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="documents.html">
+                            <i class="fas fa-file-alt"></i> Documents
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="analytics.html">
+                            <i class="fas fa-chart-line"></i> Analytics
+                        </a>
+                    </li>
+                </ul>
+            </div>
 
-            <section class="banner">
-                <h3>Your Smart Legal Assistant</h3>
-                <p>Search cases, calculate success probabilities, and manage all client interactions in one place.</p>
-            </section>
+            <!-- Main Content Area -->
+            <div class="col-md-9 col-lg-10 main-content">
+                <!-- Chat Section -->
+                <section id="chat" class="active-section">
+                    <div class="chat-container">
+                        <div class="chat-header">
+                            <h2>Legal Research Assistant</h2>
+                            <div class="chat-actions">
+                                <button id="newChat" class="btn btn-light">
+                                    <i class="fas fa-plus"></i> New Chat
+                                </button>
+                                <button id="saveChat" class="btn btn-light">
+                                    <i class="fas fa-save"></i> Save Chat
+                                </button>
+                            </div>
+                        </div>
+                        <div class="chat-messages" id="chatMessages">
+                            <div class="message assistant-message">
+                                Hello! I'm your legal research assistant. How can I help you today?
+                            </div>
+                        </div>
+                        <div class="chat-input">
+                            <textarea id="userInput" placeholder="Type your legal question here..."></textarea>
+                            <button id="sendMessage" class="btn btn-primary">
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </div>
+                    </div>
+                </section>
 
-            <section class="grid-cards">
-                <div class="card chat">
-                    <h4>Start New Chat</h4>
-                    <p>Chat with Adalat AI about your case.</p>
-                    <button>Launch</button>
-                </div>
+                <!-- Similar Cases Section -->
+                <section id="cases" class="d-none">
+                    <div class="cases-container">
+                        <div class="cases-header">
+                            <h2>Similar Cases</h2>
+                            <div class="filters">
+                                <select id="caseCategory" class="form-select">
+                                    <option value="">All Categories</option>
+                                    <option value="criminal">Criminal</option>
+                                    <option value="civil">Civil</option>
+                                    <option value="corporate">Corporate</option>
+                                </select>
+                                <input type="text" id="caseSearch" class="form-control" placeholder="Search cases...">
+                            </div>
+                        </div>
+                        <div class="cases-grid" id="casesGrid">
+                            <!-- Cases will be loaded here -->
+                        </div>
+                    </div>
+                </section>
 
-                <div class="card cases">
-                    <h4>Find Similar Cases</h4>
-                    <p>Explore precedent cases by type or fact patterns.</p>
-                    <button>Explore</button>
-                </div>
+                <!-- Win Calculator Section -->
+                <section id="calculator" class="d-none">
+                    <div class="calculator-container">
+                        <h2>Win Probability Calculator</h2>
+                        <form id="calculatorForm">
+                            <div class="form-group">
+                                <label for="caseType">Case Type</label>
+                                <select id="caseType" class="form-control" required>
+                                    <option value="">Select Case Type</option>
+                                    <option value="criminal">Criminal</option>
+                                    <option value="civil">Civil</option>
+                                    <option value="corporate">Corporate</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="caseDetails">Case Details</label>
+                                <textarea id="caseDetails" class="form-control" rows="5" required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Calculate Probability</button>
+                        </form>
+                        <div id="probabilityResult" class="mt-4">
+                            <!-- Results will be displayed here -->
+                        </div>
+                    </div>
+                </section>
 
-                <div class="card calculator">
-                    <h4>Win % Calculator</h4>
-                    <p>Estimate your case outcome with AI analysis.</p>
-                    <button>Calculate</button>
-                </div>
-
-                <div class="card archive">
-                    <h4>Saved Chats</h4>
-                    <p>View previous legal chats and history.</p>
-                    <button>View</button>
-                </div>
-            </section>
-        </main>
+                <!-- Analytics Section -->
+                <section id="analytics" class="d-none">
+                    <div class="analytics-dashboard">
+                        <div class="dashboard-header">
+                            <h2>Analytics Dashboard</h2>
+                            <div class="date-range">
+                                <input type="date" class="form-control">
+                                <span>to</span>
+                                <input type="date" class="form-control">
+                            </div>
+                        </div>
+                        <div class="stats-grid">
+                            <div class="stat-card">
+                                <div class="stat-icon">
+                                    <i class="fas fa-gavel"></i>
+                                </div>
+                                <div class="stat-info">
+                                    <h3>Total Cases</h3>
+                                    <p>1,234</p>
+                                </div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-icon">
+                                    <i class="fas fa-chart-line"></i>
+                                </div>
+                                <div class="stat-info">
+                                    <h3>Success Rate</h3>
+                                    <p>85%</p>
+                                </div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-icon">
+                                    <i class="fas fa-users"></i>
+                                </div>
+                                <div class="stat-info">
+                                    <h3>Active Lawyers</h3>
+                                    <p>42</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="charts-container">
+                            <div class="chart-card">
+                                <h3>Case Distribution</h3>
+                                <canvas id="caseDistributionChart"></canvas>
+                            </div>
+                            <div class="chart-card">
+                                <h3>Success Rate Trend</h3>
+                                <canvas id="successRateChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
     </div>
 
+    <!-- Modals -->
+    <div class="modal fade" id="profileModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Profile Settings</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- Profile form will be added here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="settingsModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Settings</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- Settings form will be added here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="app.js"></script>
 </body>
 
 </html>

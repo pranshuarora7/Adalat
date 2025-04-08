@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Win Calculator - Legal Research Assistant</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="index.html">
+                <i class="fas fa-balance-scale"></i>
+                Legal Research Assistant
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="features.html">Features</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="testimonials.html">Testimonials</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown">
+                            <i class="fas fa-user-circle"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><a class="dropdown-item" href="profile.html">Profile</a></li>
+                            <li><a class="dropdown-item" href="settings.html">Settings</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="login.html">Login</a></li>
+                            <li><a class="dropdown-item" href="register.html">Register</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar -->
+            <div class="col-md-3 col-lg-2 sidebar">
+                <div class="sidebar-header">
+                    <h4>Navigation</h4>
+                </div>
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">
+                            <i class="fas fa-comments"></i> My Chats
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="cases.html">
+                            <i class="fas fa-gavel"></i> Similar Cases
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="calculator.html">
+                            <i class="fas fa-calculator"></i> Win Calculator
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="documents.html">
+                            <i class="fas fa-file-alt"></i> Documents
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="analytics.html">
+                            <i class="fas fa-chart-line"></i> Analytics
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Main Content Area -->
+            <div class="col-md-9 col-lg-10 main-content">
+                <div class="calculator-container">
+                    <h2>Win Probability Calculator</h2>
+                    <form id="calculatorForm">
+                        <div class="form-group">
+                            <label for="caseType">Case Type</label>
+                            <select id="caseType" class="form-control" required>
+                                <option value="">Select Case Type</option>
+                                <option value="criminal">Criminal</option>
+                                <option value="civil">Civil</option>
+                                <option value="corporate">Corporate</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="caseDetails">Case Details</label>
+                            <textarea id="caseDetails" class="form-control" rows="5" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="evidenceStrength">Evidence Strength</label>
+                            <select id="evidenceStrength" class="form-control" required>
+                                <option value="">Select Evidence Strength</option>
+                                <option value="strong">Strong</option>
+                                <option value="moderate">Moderate</option>
+                                <option value="weak">Weak</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="jurisdiction">Jurisdiction</label>
+                            <select id="jurisdiction" class="form-control" required>
+                                <option value="">Select Jurisdiction</option>
+                                <option value="federal">Federal</option>
+                                <option value="state">State</option>
+                                <option value="local">Local</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="judgeExperience">Judge's Experience</label>
+                            <select id="judgeExperience" class="form-control" required>
+                                <option value="">Select Judge's Experience</option>
+                                <option value="experienced">Experienced</option>
+                                <option value="moderate">Moderate</option>
+                                <option value="new">New</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Calculate Probability</button>
+                    </form>
+                    <div id="probabilityResult" class="mt-4">
+                        <!-- Results will be displayed here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="app.js"></script>
+    <script>
+        // Initialize AOS animations
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true
+        });
+
+        // Handle form submission
+        document.getElementById('calculatorForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form values
+            const caseType = document.getElementById('caseType').value;
+            const caseDetails = document.getElementById('caseDetails').value;
+            const evidenceStrength = document.getElementById('evidenceStrength').value;
+            const jurisdiction = document.getElementById('jurisdiction').value;
+            const judgeExperience = document.getElementById('judgeExperience').value;
+
+            // Calculate probability (simulated - replace with actual API call)
+            const baseProbability = 50;
+            const evidenceModifier = {
+                'strong': 20,
+                'moderate': 0,
+                'weak': -20
+            };
+            const jurisdictionModifier = {
+                'federal': 10,
+                'state': 0,
+                'local': -10
+            };
+            const judgeModifier = {
+                'experienced': 10,
+                'moderate': 0,
+                'new': -10
+            };
+
+            let probability = baseProbability;
+            probability += evidenceModifier[evidenceStrength];
+            probability += jurisdictionModifier[jurisdiction];
+            probability += judgeModifier[judgeExperience];
+
+            // Ensure probability is between 0 and 100
+            probability = Math.max(0, Math.min(100, probability));
+
+            // Display result
+            const resultDiv = document.getElementById('probabilityResult');
+            resultDiv.innerHTML = `
+                <div class="alert ${probability >= 70 ? 'alert-success' : probability >= 40 ? 'alert-warning' : 'alert-danger'}">
+                    <h4>Win Probability: ${probability}%</h4>
+                    <p>Based on the provided information, there is a ${probability}% chance of winning this case.</p>
+                    <div class="progress mt-3">
+                        <div class="progress-bar ${probability >= 70 ? 'bg-success' : probability >= 40 ? 'bg-warning' : 'bg-danger'}" 
+                             role="progressbar" 
+                             style="width: ${probability}%" 
+                             aria-valuenow="${probability}" 
+                             aria-valuemin="0" 
+                             aria-valuemax="100">
+                        </div>
+                    </div>
+                    <div class="mt-3">
+                        <h5>Recommendations:</h5>
+                        <ul>
+                            ${probability >= 70 ? 
+                                '<li>Strong case - proceed with confidence</li>' : 
+                                probability >= 40 ? 
+                                '<li>Moderate case - consider additional evidence</li>' : 
+                                '<li>Weak case - consider settlement options</li>'
+                            }
+                            <li>Review similar cases for additional insights</li>
+                            <li>Consult with legal experts for specific advice</li>
+                        </ul>
+                    </div>
+                </div>
+            `;
+
+            // Scroll to result
+            resultDiv.scrollIntoView({ behavior: 'smooth' });
+        });
+    </script>
+</body>
+</html> 

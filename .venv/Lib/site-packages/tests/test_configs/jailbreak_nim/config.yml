@@ -1,0 +1,10 @@
+rails:
+  config:
+    jailbreak_detection:
+      server_endpoint: ""
+      nim_url: "0.0.0.0"
+      nim_port: 8000
+
+  input:
+    flows:
+      - jailbreak detection model

@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documents - Adalat</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css">
+</head>
+<body>
+    <!-- Top Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="../index.html">
+                <i class="fas fa-balance-scale"></i>
+                Adalat
+            </a>
+            <div class="d-flex align-items-center">
+                <div class="dropdown">
+                    <button class="btn btn-link text-white dropdown-toggle" type="button" id="profileDropdown" data-bs-toggle="dropdown">
+                        <img src="https://via.placeholder.com/32" class="rounded-circle me-2" alt="Profile">
+                        <span>Advocate Pranshu</span>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                        <li><a class="dropdown-item" href="profile.html"><i class="fas fa-user"></i> Profile</a></li>
+                        <li><a class="dropdown-item" href="settings.html"><i class="fas fa-cog"></i> Settings</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="#"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid main-container">
+        <div class="row">
+            <!-- Sidebar -->
+            <div class="col-md-3 sidebar">
+                <div class="sidebar-sticky">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link" href="../index.html">
+                                <i class="fas fa-home"></i> Dashboard
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="profile.html">
+                                <i class="fas fa-user"></i> Profile
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="cases.html">
+                                <i class="fas fa-folder"></i> My Cases
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="analytics.html">
+                                <i class="fas fa-chart-line"></i> Analytics
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="documents.html">
+                                <i class="fas fa-file-alt"></i> Documents
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="calendar.html">
+                                <i class="fas fa-calendar"></i> Calendar
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <div class="col-md-9 main-content">
+                <!-- Documents Header -->
+                <div class="documents-header" data-aos="fade-up">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h1>Legal Documents</h1>
+                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#uploadDocumentModal">
+                            <i class="fas fa-upload"></i> Upload Document
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Quick Stats -->
+                <div class="quick-stats" data-aos="fade-up">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="stat-card">
+                                <div class="stat-icon">
+                                    <i class="fas fa-file-alt"></i>
+                                </div>
+                                <div class="stat-info">
+                                    <h3>245</h3>
+                                    <p>Total Documents</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="stat-card">
+                                <div class="stat-icon">
+                                    <i class="fas fa-folder"></i>
+                                </div>
+                                <div class="stat-info">
+                                    <h3>12</h3>
+                                    <p>Categories</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="stat-card">
+                                <div class="stat-icon">
+                                    <i class="fas fa-shield-alt"></i>
+                                </div>
+                                <div class="stat-info">
+                                    <h3>98%</h3>
+                                    <p>Secure</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="stat-card">
+                                <div class="stat-icon">
+                                    <i class="fas fa-clock"></i>
+                                </div>
+                                <div class="stat-info">
+                                    <h3>24/7</h3>
+                                    <p>Access</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Filters -->
+                <div class="filters-section" data-aos="fade-up">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label>Document Type</label>
+                                        <select class="form-select">
+                                            <option value="">All Types</option>
+                                            <option value="pleading">Pleadings</option>
+                                            <option value="contract">Contracts</option>
+                                            <option value="agreement">Agreements</option>
+                                            <option value="notice">Notices</option>
+                                            <option value="report">Reports</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label>Category</label>
+                                        <select class="form-select">
+                                            <option value="">All Categories</option>
+                                            <option value="civil">Civil</option>
+                                            <option value="criminal">Criminal</option>
+                                            <option value="corporate">Corporate</option>
+                                            <option value="family">Family</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label>Date Range</label>
+                                        <select class="form-select">
+                                            <option value="">All Time</option>
+                                            <option value="today">Today</option>
+                                            <option value="week">This Week</option>
+                                            <option value="month">This Month</option>
+                                            <option value="year">This Year</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label>Search</label>
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" placeholder="Search documents...">
+                                            <button class="btn btn-outline-secondary">
+                                                <i class="fas fa-search"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Documents Grid -->
+                <div class="documents-grid" data-aos="fade-up">
+                    <div class="row">
+                        <!-- Document Card 1 -->
+                        <div class="col-md-4">
+                            <div class="document-card">
+                                <div class="document-header">
+                                    <span class="document-type pleading">Pleading</span>
+                                    <span class="document-category civil">Civil</span>
+                                </div>
+                                <div class="document-body">
+                                    <div class="document-icon">
+                                        <i class="fas fa-file-alt"></i>
+                                    </div>
+                                    <h3>Writ Petition</h3>
+                                    <p class="document-description">Writ petition filed in the High Court regarding property rights.</p>
+                                    <div class="document-details">
+                                        <div class="detail-item">
+                                            <i class="fas fa-calendar"></i>
+                                            <span>Uploaded: 10 Apr 2024</span>
+                                        </div>
+                                        <div class="detail-item">
+                                            <i class="fas fa-user"></i>
+                                            <span>Client: Mr. Sharma</span>
+                                        </div>
+                                        <div class="detail-item">
+                                            <i class="fas fa-file-pdf"></i>
+                                            <span>Size: 2.5 MB</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="document-footer">
+                                    <button class="btn btn-sm btn-outline-primary">
+                                        <i class="fas fa-eye"></i> View
+                                    </button>
+                                    <button class="btn btn-sm btn-outline-success">
+                                        <i class="fas fa-download"></i> Download
+                                    </button>
+                                    <button class="btn btn-sm btn-outline-danger">
+                                        <i class="fas fa-trash"></i> Delete
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Document Card 2 -->
+                        <div class="col-md-4">
+                            <div class="document-card">
+                                <div class="document-header">
+                                    <span class="document-type contract">Contract</span>
+                                    <span class="document-category corporate">Corporate</span>
+                                </div>
+                                <div class="document-body">
+                                    <div class="document-icon">
+                                        <i class="fas fa-file-contract"></i>
+                                    </div>
+                                    <h3>Merger Agreement</h3>
+                                    <p class="document-description">Legal agreement for corporate merger between two companies.</p>
+                                    <div class="document-details">
+                                        <div class="detail-item">
+                                            <i class="fas fa-calendar"></i>
+                                            <span>Uploaded: 5 Apr 2024</span>
+                                        </div>
+                                        <div class="detail-item">
+                                            <i class="fas fa-user"></i>
+                                            <span>Client: ABC Corp</span>
+                                        </div>
+                                        <div class="detail-item">
+                                            <i class="fas fa-file-pdf"></i>
+                                            <span>Size: 5.2 MB</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="document-footer">
+                                    <button class="btn btn-sm btn-outline-primary">
+                                        <i class="fas fa-eye"></i> View
+                                    </button>
+                                    <button class="btn btn-sm btn-outline-success">
+                                        <i class="fas fa-download"></i> Download
+                                    </button>
+                                    <button class="btn btn-sm btn-outline-danger">
+                                        <i class="fas fa-trash"></i> Delete
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Document Card 3 -->
+                        <div class="col-md-4">
+                            <div class="document-card">
+                                <div class="document-header">
+                                    <span class="document-type notice">Notice</span>
+                                    <span class="document-category criminal">Criminal</span>
+                                </div>
+                                <div class="document-body">
+                                    <div class="document-icon">
+                                        <i class="fas fa-file-invoice"></i>
+                                    </div>
+                                    <h3>Legal Notice</h3>
+                                    <p class="document-description">Legal notice sent to opposing party regarding fraud case.</p>
+                                    <div class="document-details">
+                                        <div class="detail-item">
+                                            <i class="fas fa-calendar"></i>
+                                            <span>Uploaded: 1 Apr 2024</span>
+                                        </div>
+                                        <div class="detail-item">
+                                            <i class="fas fa-user"></i>
+                                            <span>Client: XYZ Ltd.</span>
+                                        </div>
+                                        <div class="detail-item">
+                                            <i class="fas fa-file-pdf"></i>
+                                            <span>Size: 1.8 MB</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="document-footer">
+                                    <button class="btn btn-sm btn-outline-primary">
+                                        <i class="fas fa-eye"></i> View
+                                    </button>
+                                    <button class="btn btn-sm btn-outline-success">
+                                        <i class="fas fa-download"></i> Download
+                                    </button>
+                                    <button class="btn btn-sm btn-outline-danger">
+                                        <i class="fas fa-trash"></i> Delete
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pagination -->
+                <div class="pagination-section" data-aos="fade-up">
+                    <nav aria-label="Page navigation">
+                        <ul class="pagination justify-content-center">
+                            <li class="page-item disabled">
+                                <a class="page-link" href="#" tabindex="-1">Previous</a>
+                            </li>
+                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item">
+                                <a class="page-link" href="#">Next</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Upload Document Modal -->
+    <div class="modal fade" id="uploadDocumentModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Upload Document</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="uploadDocumentForm">
+                        <div class="upload-area">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                            <h4>Drag & Drop Files Here</h4>
+                            <p>or</p>
+                            <button type="button" class="btn btn-primary">
+                                Browse Files
+                            </button>
+                            <input type="file" class="d-none" multiple>
+                        </div>
+                        <div class="row mt-4">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Document Type</label>
+                                    <select class="form-select" required>
+                                        <option value="pleading">Pleading</option>
+                                        <option value="contract">Contract</option>
+                                        <option value="agreement">Agreement</option>
+                                        <option value="notice">Notice</option>
+                                        <option value="report">Report</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Category</label>
+                                    <select class="form-select" required>
+                                        <option value="civil">Civil</option>
+                                        <option value="criminal">Criminal</option>
+                                        <option value="corporate">Corporate</option>
+                                        <option value="family">Family</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Description</label>
+                            <textarea class="form-control" rows="3" required></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Tags</label>
+                            <input type="text" class="form-control" placeholder="Add tags separated by commas">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Upload</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script src="../app.js"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
+
+        // Handle file upload
+        const uploadArea = document.querySelector('.upload-area');
+        const fileInput = uploadArea.querySelector('input[type="file"]');
+        const browseButton = uploadArea.querySelector('button');
+
+        browseButton.addEventListener('click', () => {
+            fileInput.click();
+        });
+
+        uploadArea.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            uploadArea.classList.add('dragover');
+        });
+
+        uploadArea.addEventListener('dragleave', () => {
+            uploadArea.classList.remove('dragover');
+        });
+
+        uploadArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            uploadArea.classList.remove('dragover');
+            fileInput.files = e.dataTransfer.files;
+        });
+    </script>
+</body>
+</html> 

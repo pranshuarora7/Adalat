@@ -1,1 +1,0 @@
-# Contains the logic for generating and storing embeddings of documents, used for similarity searches

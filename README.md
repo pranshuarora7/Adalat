@@ -1,149 +1,160 @@
-# 🚀 Chatbot RAG with NeMo Guardrails  
+# Adalat - Legal Research Assistant
 
-This project is a **Retrieval-Augmented Generation (RAG) chatbot** that uses **LangChain, OpenAI, ChromaDB, and NeMo Guardrails** to answer questions based on predefined documents. It ensures the chatbot does **not** answer questions outside the given knowledge base.
+Adalat is an advanced AI-powered legal research assistant designed to revolutionize the way legal professionals conduct research and manage their cases. The platform combines cutting-edge artificial intelligence with a user-friendly interface to provide comprehensive legal research, case analysis, and document management capabilities.
 
----
+## Features
 
-## 📌 **Features**
-✅ **Retrieves answers from documents (`.md` files)**  
-✅ **Uses NeMo Guardrails to restrict responses**  
-✅ **Embeds and indexes documents using ChromaDB**  
-✅ **Uses OpenAI LLM for response generation**  
-✅ **Prevents answering out-of-context questions**  
+### 1. Advanced Legal Research
+- AI-powered search across legal databases
+- Natural language processing for intuitive queries
+- Comprehensive case law analysis
+- Legal precedent identification
 
----
+### 2. Case Analysis
+- Similar case recommendations
+- Win probability calculator
+- Case outcome predictions
+- Historical success rate analysis
 
-## 🛠 **Installation & Setup**
-Follow these steps to set up and run the chatbot.
+### 3. Document Management
+- Secure document storage
+- Document categorization
+- Version control
+- Collaborative editing
 
-### **1️⃣ Clone the Project**
-```sh
-git clone <your-repo-url>
-cd chatbot_ks_v2
+### 4. Analytics Dashboard
+- Case statistics visualization
+- Success rate trends
+- Case type distribution
+- Client demographics analysis
+
+### 5. Calendar Integration
+- Court hearing scheduling
+- Client meeting management
+- Document signing reminders
+- Event notifications
+
+## Technology Stack
+
+### Frontend
+- HTML5, CSS3, JavaScript
+- Bootstrap 5 for responsive design
+- Font Awesome for icons
+- AOS (Animate On Scroll) for animations
+- Chart.js for data visualization
+- FullCalendar for calendar management
+
+### Backend
+- Python with FastAPI
+- PostgreSQL database
+- Redis for caching
+- JWT for authentication
+- AWS S3 for file storage
+
+## Getting Started
+
+### Prerequisites
+- Node.js (v14 or higher)
+- Python (v3.8 or higher)
+- PostgreSQL (v12 or higher)
+- Redis (v6 or higher)
+
+### Installation
+
+1. Clone the repository:
+```bash
+git clone https://github.com/yourusername/adalat.git
+cd adalat
 ```
 
-### **2️⃣ Create a Virtual Environment (`.venv`)**
-```sh
-python -m venv .venv
+2. Install frontend dependencies:
+```bash
+cd Frontend
+npm install
 ```
 
-### **3️⃣ Activate the Virtual Environment**
-#### **Windows (CMD / PowerShell)**
-```sh
-.venv\Scripts\activate
-```
-#### **Mac/Linux (Terminal)**
-```sh
-source .venv/bin/activate
-```
-
-### **4️⃣ Install Dependencies**
-```sh
-pip install --upgrade pip
-pip install langchain openai chromadb nemoguardrails python-dotenv
-```
-
-### **5️⃣ Set Up API Keys**
-Create a **`.env`** file in the root directory and add:
-```
-OPENAI_API_KEY=your_openai_api_key
-```
-
----
-
-## 📂 **Project Structure**
-```
-chatbot_ks_v2/
-│── data/
-│   ├── embeddings.py  # Handles document indexing
-│── models/
-│   ├── generator.py  # Generates responses
-│── utils/
-│   ├── response_formatter.py  # Formats bot responses
-│── chatbot/
-│   ├── main.py  # Main chatbot script
-│── content_files/
-│   ├── order.md
-│   ├── customer.md
-│   ├── product.md
-│   ├── default.md
-│── nemo_guardrails/
-│   ├── colang_rules.co  # Guardrails rules
-│── nemo_config.yaml  # Configuration file
-│── .env  # API key storage
-│── requirements.txt  # List of dependencies
-│── README.md  # Project guide
-```
-
----
-
-## 🚀 **Running the Project**
-### **1️⃣ Start the Chatbot**
-```sh
-python chatbot/main.py
-```
-
-### **2️⃣ Test Queries**
-Try these prompts in the chatbot:
-```
-User: Where is my order?
-Bot: (Response from order.md)
-
-User: What are the product features?
-Bot: (Response from product.md)
-
-User: How can I reset my password?
-Bot: (Response from customer.md)
-
-User: What is the capital of France?
-Bot: "I'm sorry, but I can only answer order, product, or customer-related questions."
-```
-
----
-
-## 📜 **How It Works**
-1. **User Input** → The chatbot receives a user question.
-2. **NeMo Guardrails Routing** → Determines if the query is related to **order, product, customer, or general**.
-3. **Document Retrieval** → Fetches the relevant document (`order.md`, `product.md`, etc.).
-4. **Response Generation** → Passes the document content to **OpenAI LLM** to generate a response.
-5. **Filtering** → If the query is **out of scope**, the bot **rejects it** instead of answering.
-
----
-
-## ✅ **Key Features**
-✔ **Document-based retrieval** with ChromaDB  
-✔ **NeMo Guardrails** to restrict responses  
-✔ **FastAPI-ready** structure (can be expanded later)  
-✔ **Secure API key handling** using `.env`  
-
----
-
-## ⚡ **Next Steps**
-- ✅ Fine-tune the `.co` file for stricter rules.  
-- ✅ Expand `content_files/` with more documents.  
-- ✅ Deploy as a web service using **FastAPI**.  
-
----
-
-## ❓ **Troubleshooting**
-### **Error: "Module Not Found"**
-Run:
-```sh
+3. Install backend dependencies:
+```bash
+cd ../Backend
 pip install -r requirements.txt
 ```
 
-### **Error: "Invalid API Key"**
-- Check if **`.env`** has the correct API key.
-- Ensure **`.venv`** is activated before running the script.
+4. Set up environment variables:
+```bash
+cp .env.example .env
+# Edit .env with your configuration
+```
 
----
+5. Initialize the database:
+```bash
+python manage.py db upgrade
+```
 
-## 📝 **License**
-PRIVATE Liscence
+6. Start the development servers:
+```bash
+# Frontend
+cd Frontend
+npm run dev
 
----
+# Backend
+cd Backend
+uvicorn main:app --reload
+```
 
-🚀 **Happy Coding!** 🚀  
+## Project Structure
+
+```
+adalat/
+├── Frontend/
+│   ├── assets/
+│   │   ├── pages/
+│   │   │   ├── login.html
+│   │   │   ├── register.html
+│   │   │   ├── profile.html
+│   │   │   ├── cases.html
+│   │   │   ├── analytics.html
+│   │   │   ├── documents.html
+│   │   │   └── calendar.html
+│   │   ├── styles.css
+│   │   └── index.html
+│   ├── Backend/
+│   │   ├── app/
+│   │   │   ├── api/
+│   │   │   ├── core/
+│   │   │   ├── models/
+│   │   │   └── services/
+│   │   ├── tests/
+│   │   ├── requirements.txt
+│   │   └── main.py
+│   └── README.md
+```
+
+## Contributing
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Acknowledgments
+
+- [Bootstrap](https://getbootstrap.com/)
+- [Font Awesome](https://fontawesome.com/)
+- [Chart.js](https://www.chartjs.org/)
+- [FullCalendar](https://fullcalendar.io/)
+- [FastAPI](https://fastapi.tiangolo.com/)
+
+## Contact
+
+For any queries or support, please contact:
+- Email: support@adalat.com
+- Website: https://adalat.com
+- Twitter: [@AdalatLegal](https://twitter.com/AdalatLegal)
 ```
 
 ---

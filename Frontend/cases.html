@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Similar Cases - Legal Research Assistant</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="index.html">
+                <i class="fas fa-balance-scale"></i>
+                Legal Research Assistant
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="features.html">Features</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="testimonials.html">Testimonials</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown">
+                            <i class="fas fa-user-circle"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><a class="dropdown-item" href="profile.html">Profile</a></li>
+                            <li><a class="dropdown-item" href="settings.html">Settings</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="login.html">Login</a></li>
+                            <li><a class="dropdown-item" href="register.html">Register</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar -->
+            <div class="col-md-3 col-lg-2 sidebar">
+                <div class="sidebar-header">
+                    <h4>Navigation</h4>
+                </div>
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">
+                            <i class="fas fa-comments"></i> My Chats
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="cases.html">
+                            <i class="fas fa-gavel"></i> Similar Cases
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="calculator.html">
+                            <i class="fas fa-calculator"></i> Win Calculator
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="documents.html">
+                            <i class="fas fa-file-alt"></i> Documents
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="analytics.html">
+                            <i class="fas fa-chart-line"></i> Analytics
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Main Content Area -->
+            <div class="col-md-9 col-lg-10 main-content">
+                <div class="cases-container">
+                    <div class="cases-header">
+                        <h2>Similar Cases</h2>
+                        <div class="filters">
+                            <select id="caseCategory" class="form-select">
+                                <option value="">All Categories</option>
+                                <option value="criminal">Criminal</option>
+                                <option value="civil">Civil</option>
+                                <option value="corporate">Corporate</option>
+                            </select>
+                            <input type="text" id="caseSearch" class="form-control" placeholder="Search cases...">
+                        </div>
+                    </div>
+                    <div class="cases-grid" id="casesGrid">
+                        <!-- Cases will be loaded here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Case Details Modal -->
+    <div class="modal fade" id="caseDetailsModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Case Details</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="case-details">
+                        <h3 id="caseTitle"></h3>
+                        <div class="case-meta">
+                            <span class="badge bg-primary" id="caseCategory"></span>
+                            <span class="case-date" id="caseDate"></span>
+                        </div>
+                        <div class="case-summary" id="caseSummary"></div>
+                        <div class="case-outcome" id="caseOutcome"></div>
+                        <div class="case-documents">
+                            <h4>Related Documents</h4>
+                            <ul id="caseDocuments"></ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="analyzeCase">Analyze Case</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="app.js"></script>
+    <script>
+        // Initialize AOS animations
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true
+        });
+
+        // Load cases when the page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            loadCases();
+        });
+
+        // Function to load cases
+        function loadCases() {
+            const casesGrid = document.getElementById('casesGrid');
+            const caseCategory = document.getElementById('caseCategory').value;
+            const caseSearch = document.getElementById('caseSearch').value.toLowerCase();
+
+            // Simulated case data (replace with actual API call)
+            const cases = [
+                {
+                    id: 1,
+                    title: "Contract Dispute Resolution",
+                    category: "Civil",
+                    date: "2023-01-15",
+                    outcome: "Settled",
+                    summary: "Successfully mediated a contract dispute between two corporations.",
+                    documents: ["Contract Agreement", "Mediation Report", "Settlement Agreement"]
+                },
+                {
+                    id: 2,
+                    title: "Criminal Defense Case",
+                    category: "Criminal",
+                    date: "2023-02-20",
+                    outcome: "Acquitted",
+                    summary: "Defended client against false accusations with strong evidence.",
+                    documents: ["Police Report", "Witness Statements", "Court Transcripts"]
+                },
+                {
+                    id: 3,
+                    title: "Corporate Merger Case",
+                    category: "Corporate",
+                    date: "2023-03-10",
+                    outcome: "Approved",
+                    summary: "Successfully handled a complex corporate merger between two major companies.",
+                    documents: ["Merger Agreement", "Due Diligence Report", "Shareholder Approval"]
+                }
+            ];
+
+            // Filter cases
+            const filteredCases = cases.filter(caseData => {
+                const matchesCategory = !caseCategory || caseData.category.toLowerCase() === caseCategory.toLowerCase();
+                const matchesSearch = !caseSearch || 
+                    caseData.title.toLowerCase().includes(caseSearch) ||
+                    caseData.summary.toLowerCase().includes(caseSearch);
+                return matchesCategory && matchesSearch;
+            });
+
+            // Display cases
+            casesGrid.innerHTML = '';
+            filteredCases.forEach(caseData => {
+                const caseCard = document.createElement('div');
+                caseCard.className = 'case-card';
+                caseCard.innerHTML = `
+                    <h3>${caseData.title}</h3>
+                    <p><strong>Category:</strong> ${caseData.category}</p>
+                    <p><strong>Date:</strong> ${caseData.date}</p>
+                    <p><strong>Outcome:</strong> ${caseData.outcome}</p>
+                    <p>${caseData.summary}</p>
+                    <button class="btn btn-primary view-details" data-case-id="${caseData.id}">
+                        View Details
+                    </button>
+                `;
+                casesGrid.appendChild(caseCard);
+            });
+
+            // Add event listeners to view details buttons
+            document.querySelectorAll('.view-details').forEach(button => {
+                button.addEventListener('click', function() {
+                    const caseId = this.getAttribute('data-case-id');
+                    const caseData = cases.find(c => c.id === parseInt(caseId));
+                    if (caseData) {
+                        showCaseDetails(caseData);
+                    }
+                });
+            });
+        }
+
+        // Function to show case details in modal
+        function showCaseDetails(caseData) {
+            document.getElementById('caseTitle').textContent = caseData.title;
+            document.getElementById('caseCategory').textContent = caseData.category;
+            document.getElementById('caseDate').textContent = caseData.date;
+            document.getElementById('caseSummary').textContent = caseData.summary;
+            document.getElementById('caseOutcome').textContent = `Outcome: ${caseData.outcome}`;
+
+            const documentsList = document.getElementById('caseDocuments');
+            documentsList.innerHTML = '';
+            caseData.documents.forEach(doc => {
+                const li = document.createElement('li');
+                li.innerHTML = `<a href="#" class="document-link">${doc}</a>`;
+                documentsList.appendChild(li);
+            });
+
+            const modal = new bootstrap.Modal(document.getElementById('caseDetailsModal'));
+            modal.show();
+        }
+
+        // Event listeners for filters
+        document.getElementById('caseCategory').addEventListener('change', loadCases);
+        document.getElementById('caseSearch').addEventListener('input', loadCases);
+
+        // Event listener for analyze case button
+        document.getElementById('analyzeCase').addEventListener('click', function() {
+            // Redirect to calculator page with case details
+            window.location.href = 'calculator.html';
+        });
+    </script>
+</body>
+</html> 

@@ -1,0 +1,24 @@
+# INPUT RAILS
+
+@active
+flow protect prompt
+  """Check if the prompt is valid according to Prompt Security."""
+  $result = await protect_text(user_prompt=$user_message)
+  if $result["is_blocked"]
+    bot inform answer unknown
+    stop
+  else if $result["is_modified"]
+    $user_message = $result["modified_text"]
+
+
+# OUTPUT RAILS
+
+@active
+flow protect response
+  """Check if the response is valid according to Prompt Security."""
+  $result = await protect_text(bot_response=$bot_message)
+  if $result["is_blocked"]
+    bot inform answer unknown
+    stop
+  else if $result["is_modified"]
+    $bot_message = $result["modified_text"]

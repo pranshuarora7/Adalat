@@ -1,0 +1,23 @@
+name: PR Tests
+
+# we don't ignore markdkowns to run pre-commits
+on:
+  push:
+    paths-ignore:
+      - ".github/**"
+
+jobs:
+  call-tests:
+    strategy:
+      matrix:
+        os: [Ubuntu]
+        python-version: ["3.9", "3.10", "3.11", "3.12"]
+        include:
+          - os: Ubuntu
+            image: ubuntu-latest
+      fail-fast: false
+    uses: ./.github/workflows/_test.yml
+    with:
+      os: ${{ matrix.os }}
+      image: ${{ matrix.image }}
+      python-version: ${{ matrix.python-version }}
