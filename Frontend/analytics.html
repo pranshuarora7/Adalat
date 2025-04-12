@@ -3,472 +3,268 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Analytics - Legal Research Assistant</title>
+    <title>Adalat - Analytics Dashboard</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link href="styles.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-light">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="index.html">
-                <i class="fas fa-balance-scale"></i>
-                Legal Research Assistant
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="features.html">Features</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="testimonials.html">Testimonials</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown">
-                            <i class="fas fa-user-circle"></i>
-                        </a>
-                        <ul class="dropdown-menu dropdown-menu-end">
-                            <li><a class="dropdown-item" href="profile.html">Profile</a></li>
-                            <li><a class="dropdown-item" href="settings.html">Settings</a></li>
-                            <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="login.html">Login</a></li>
-                            <li><a class="dropdown-item" href="register.html">Register</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <h3><i class="fas fa-balance-scale"></i> Adalat</h3>
         </div>
-    </nav>
-
-    <!-- Main Content -->
-    <div class="container-fluid">
-        <div class="row">
-            <!-- Sidebar -->
-            <div class="col-md-3 col-lg-2 sidebar">
-                <div class="sidebar-header">
-                    <h4>Navigation</h4>
-                </div>
-                <ul class="nav flex-column">
-                    <li class="nav-item">
-                        <a class="nav-link" href="index.html">
-                            <i class="fas fa-comments"></i> My Chats
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="cases.html">
-                            <i class="fas fa-gavel"></i> Similar Cases
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="calculator.html">
-                            <i class="fas fa-calculator"></i> Win Calculator
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="documents.html">
-                            <i class="fas fa-file-alt"></i> Documents
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="analytics.html">
-                            <i class="fas fa-chart-line"></i> Analytics
-                        </a>
-                    </li>
-                </ul>
-            </div>
-
-            <!-- Main Content Area -->
-            <div class="col-md-9 col-lg-10 main-content">
-                <div class="analytics-container">
-                    <!-- Analytics Header -->
-                    <div class="analytics-header">
-                        <h2>Analytics Dashboard</h2>
-                        <div class="date-range">
-                            <select id="timeRange" class="form-select">
-                                <option value="7">Last 7 Days</option>
-                                <option value="30">Last 30 Days</option>
-                                <option value="90">Last 90 Days</option>
-                                <option value="365">Last Year</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <!-- Key Metrics -->
-                    <div class="metrics-grid">
-                        <div class="metric-card">
-                            <div class="metric-icon">
-                                <i class="fas fa-gavel"></i>
-                            </div>
-                            <div class="metric-info">
-                                <h3>Total Cases</h3>
-                                <p class="metric-value">1,234</p>
-                                <p class="metric-change positive">+12% from last period</p>
-                            </div>
-                        </div>
-                        <div class="metric-card">
-                            <div class="metric-icon">
-                                <i class="fas fa-trophy"></i>
-                            </div>
-                            <div class="metric-info">
-                                <h3>Success Rate</h3>
-                                <p class="metric-value">78%</p>
-                                <p class="metric-change positive">+5% from last period</p>
-                            </div>
-                        </div>
-                        <div class="metric-card">
-                            <div class="metric-icon">
-                                <i class="fas fa-file-alt"></i>
-                            </div>
-                            <div class="metric-info">
-                                <h3>Documents Analyzed</h3>
-                                <p class="metric-value">5,678</p>
-                                <p class="metric-change positive">+23% from last period</p>
-                            </div>
-                        </div>
-                        <div class="metric-card">
-                            <div class="metric-icon">
-                                <i class="fas fa-users"></i>
-                            </div>
-                            <div class="metric-info">
-                                <h3>Active Users</h3>
-                                <p class="metric-value">456</p>
-                                <p class="metric-change positive">+8% from last period</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Charts Section -->
-                    <div class="charts-grid">
-                        <!-- Case Success Rate by Category -->
-                        <div class="chart-card">
-                            <h3>Case Success Rate by Category</h3>
-                            <canvas id="successRateChart"></canvas>
-                        </div>
-                        <!-- Case Distribution by Court -->
-                        <div class="chart-card">
-                            <h3>Case Distribution by Court</h3>
-                            <canvas id="courtDistributionChart"></canvas>
-                        </div>
-                        <!-- Monthly Case Volume -->
-                        <div class="chart-card">
-                            <h3>Monthly Case Volume</h3>
-                            <canvas id="monthlyVolumeChart"></canvas>
-                        </div>
-                        <!-- Document Usage by Type -->
-                        <div class="chart-card">
-                            <h3>Document Usage by Type</h3>
-                            <canvas id="documentUsageChart"></canvas>
-                        </div>
-                    </div>
-
-                    <!-- Detailed Analytics -->
-                    <div class="detailed-analytics">
-                        <div class="analytics-tabs">
-                            <ul class="nav nav-tabs" id="analyticsTabs" role="tablist">
-                                <li class="nav-item" role="presentation">
-                                    <button class="nav-link active" id="case-tab" data-bs-toggle="tab" data-bs-target="#caseAnalytics" type="button">Case Analytics</button>
-                                </li>
-                                <li class="nav-item" role="presentation">
-                                    <button class="nav-link" id="document-tab" data-bs-toggle="tab" data-bs-target="#documentAnalytics" type="button">Document Analytics</button>
-                                </li>
-                                <li class="nav-item" role="presentation">
-                                    <button class="nav-link" id="user-tab" data-bs-toggle="tab" data-bs-target="#userAnalytics" type="button">User Analytics</button>
-                                </li>
-                            </ul>
-                            <div class="tab-content" id="analyticsTabContent">
-                                <!-- Case Analytics Tab -->
-                                <div class="tab-pane fade show active" id="caseAnalytics" role="tabpanel">
-                                    <div class="analytics-table">
-                                        <table class="table">
-                                            <thead>
-                                                <tr>
-                                                    <th>Case Category</th>
-                                                    <th>Total Cases</th>
-                                                    <th>Success Rate</th>
-                                                    <th>Avg. Duration</th>
-                                                    <th>Trend</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td>Criminal</td>
-                                                    <td>456</td>
-                                                    <td>82%</td>
-                                                    <td>6 months</td>
-                                                    <td><i class="fas fa-arrow-up text-success"></i> +15%</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Civil</td>
-                                                    <td>342</td>
-                                                    <td>75%</td>
-                                                    <td>8 months</td>
-                                                    <td><i class="fas fa-arrow-up text-success"></i> +8%</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Corporate</td>
-                                                    <td>236</td>
-                                                    <td>68%</td>
-                                                    <td>12 months</td>
-                                                    <td><i class="fas fa-arrow-down text-danger"></i> -5%</td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                                <!-- Document Analytics Tab -->
-                                <div class="tab-pane fade" id="documentAnalytics" role="tabpanel">
-                                    <div class="analytics-table">
-                                        <table class="table">
-                                            <thead>
-                                                <tr>
-                                                    <th>Document Type</th>
-                                                    <th>Total Documents</th>
-                                                    <th>Avg. Size</th>
-                                                    <th>Usage Rate</th>
-                                                    <th>Trend</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td>Legal Briefs</td>
-                                                    <td>1,234</td>
-                                                    <td>2.5 MB</td>
-                                                    <td>85%</td>
-                                                    <td><i class="fas fa-arrow-up text-success"></i> +12%</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Contracts</td>
-                                                    <td>876</td>
-                                                    <td>1.8 MB</td>
-                                                    <td>72%</td>
-                                                    <td><i class="fas fa-arrow-up text-success"></i> +5%</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Evidence</td>
-                                                    <td>654</td>
-                                                    <td>4.2 MB</td>
-                                                    <td>68%</td>
-                                                    <td><i class="fas fa-arrow-down text-danger"></i> -3%</td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                                <!-- User Analytics Tab -->
-                                <div class="tab-pane fade" id="userAnalytics" role="tabpanel">
-                                    <div class="analytics-table">
-                                        <table class="table">
-                                            <thead>
-                                                <tr>
-                                                    <th>User Type</th>
-                                                    <th>Active Users</th>
-                                                    <th>Avg. Sessions</th>
-                                                    <th>Feature Usage</th>
-                                                    <th>Trend</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td>Lawyers</td>
-                                                    <td>234</td>
-                                                    <td>12/week</td>
-                                                    <td>92%</td>
-                                                    <td><i class="fas fa-arrow-up text-success"></i> +18%</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Legal Researchers</td>
-                                                    <td>156</td>
-                                                    <td>8/week</td>
-                                                    <td>85%</td>
-                                                    <td><i class="fas fa-arrow-up text-success"></i> +10%</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Students</td>
-                                                    <td>66</td>
-                                                    <td>4/week</td>
-                                                    <td>78%</td>
-                                                    <td><i class="fas fa-arrow-down text-danger"></i> -2%</td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <ul class="sidebar-menu">
+            <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+            <li><a href="cases.html"><i class="fas fa-gavel"></i> Cases</a></li>
+            <li><a href="features.html"><i class="fas fa-star"></i> Features</a></li>
+            <li><a href="calculator.html"><i class="fas fa-calculator"></i> Calculator</a></li>
+            <li><a href="analytics.html" class="active"><i class="fas fa-chart-line"></i> Analytics</a></li>
+            <li><a href="profile.html"><i class="fas fa-user"></i> Profile</a></li>
+        </ul>
     </div>
 
-    <!-- Scripts -->
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="analytics-container">
+            <div class="row mb-4">
+                <div class="col-md-6">
+                    <h1>Analytics Dashboard</h1>
+                    <p class="text-muted">Track your legal practice performance</p>
+                </div>
+                <div class="col-md-6 text-end">
+                    <div class="btn-group">
+                        <button class="btn btn-outline-secondary">
+                            <i class="fas fa-calendar me-2"></i>This Month
+                        </button>
+                        <button class="btn btn-outline-secondary">
+                            <i class="fas fa-download me-2"></i>Export
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Stats Overview -->
+            <div class="row mb-4">
+                <div class="col-md-3">
+                    <div class="stat-card">
+                        <div class="stat-icon bg-primary">
+                            <i class="fas fa-gavel"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>24</h3>
+                            <p class="text-muted">Active Cases</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stat-card">
+                        <div class="stat-icon bg-success">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>18</h3>
+                            <p class="text-muted">Won Cases</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stat-card">
+                        <div class="stat-icon bg-warning">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>6</h3>
+                            <p class="text-muted">Pending Cases</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stat-card">
+                        <div class="stat-icon bg-danger">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>75%</h3>
+                            <p class="text-muted">Win Rate</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Charts Section -->
+            <div class="row mb-4">
+                <div class="col-md-8">
+                    <div class="chart-card">
+                        <div class="card-header d-flex justify-content-between align-items-center">
+                            <h5>Case Performance</h5>
+                            <div class="chart-actions">
+                                <button class="btn btn-sm btn-outline-secondary">
+                                    <i class="fas fa-download"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="performanceChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="chart-card">
+                        <div class="card-header">
+                            <h5>Case Distribution</h5>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="distributionChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Activity and Deadlines -->
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="activity-card">
+                        <div class="card-header">
+                            <h5>Recent Activity</h5>
+                        </div>
+                        <div class="activity-list">
+                            <div class="activity-item">
+                                <div class="activity-icon">
+                                    <i class="fas fa-file-alt"></i>
+                                </div>
+                                <div class="activity-info">
+                                    <h6>New Document Uploaded</h6>
+                                    <p class="text-muted">Contract Agreement.pdf</p>
+                                    <small>2 hours ago</small>
+                                </div>
+                            </div>
+                            <div class="activity-item">
+                                <div class="activity-icon">
+                                    <i class="fas fa-gavel"></i>
+                                </div>
+                                <div class="activity-info">
+                                    <h6>Case Status Updated</h6>
+                                    <p class="text-muted">Case #1234 - Hearing Scheduled</p>
+                                    <small>5 hours ago</small>
+                                </div>
+                            </div>
+                            <div class="activity-item">
+                                <div class="activity-icon">
+                                    <i class="fas fa-user"></i>
+                                </div>
+                                <div class="activity-info">
+                                    <h6>New Client Added</h6>
+                                    <p class="text-muted">John Smith</p>
+                                    <small>Yesterday</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="activity-card">
+                        <div class="card-header">
+                            <h5>Upcoming Deadlines</h5>
+                        </div>
+                        <div class="deadline-list">
+                            <div class="deadline-item">
+                                <div class="deadline-date">
+                                    <span class="day">15</span>
+                                    <span class="month">Mar</span>
+                                </div>
+                                <div class="deadline-info">
+                                    <h6>Court Hearing</h6>
+                                    <p class="text-muted">Case #1234 - Smith vs. Johnson</p>
+                                    <small>10:00 AM - District Court</small>
+                                </div>
+                            </div>
+                            <div class="deadline-item">
+                                <div class="deadline-date">
+                                    <span class="day">18</span>
+                                    <span class="month">Mar</span>
+                                </div>
+                                <div class="deadline-info">
+                                    <h6>Document Submission</h6>
+                                    <p class="text-muted">Case #5678 - Evidence Submission</p>
+                                    <small>11:59 PM - Online Portal</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="app.js"></script>
     <script>
-        // Initialize AOS animations
-        AOS.init({
-            duration: 800,
-            easing: 'ease-in-out',
-            once: true
-        });
-
-        // Initialize charts when the page loads
-        document.addEventListener('DOMContentLoaded', function() {
-            initializeCharts();
-        });
-
-        // Function to initialize all charts
-        function initializeCharts() {
-            // Case Success Rate by Category Chart
-            const successRateCtx = document.getElementById('successRateChart').getContext('2d');
-            new Chart(successRateCtx, {
-                type: 'bar',
-                data: {
-                    labels: ['Criminal', 'Civil', 'Corporate', 'Family', 'Property'],
-                    datasets: [{
-                        label: 'Success Rate (%)',
-                        data: [82, 75, 68, 79, 71],
-                        backgroundColor: [
-                            'rgba(75, 192, 192, 0.6)',
-                            'rgba(54, 162, 235, 0.6)',
-                            'rgba(255, 206, 86, 0.6)',
-                            'rgba(153, 102, 255, 0.6)',
-                            'rgba(255, 159, 64, 0.6)'
-                        ],
-                        borderColor: [
-                            'rgba(75, 192, 192, 1)',
-                            'rgba(54, 162, 235, 1)',
-                            'rgba(255, 206, 86, 1)',
-                            'rgba(153, 102, 255, 1)',
-                            'rgba(255, 159, 64, 1)'
-                        ],
-                        borderWidth: 1
-                    }]
+        // Performance Chart
+        const performanceCtx = document.getElementById('performanceChart').getContext('2d');
+        new Chart(performanceCtx, {
+            type: 'line',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                datasets: [{
+                    label: 'Cases Won',
+                    data: [12, 19, 15, 17, 22, 18],
+                    borderColor: '#2ecc71',
+                    tension: 0.4,
+                    fill: true,
+                    backgroundColor: 'rgba(46, 204, 113, 0.1)'
+                }, {
+                    label: 'Cases Lost',
+                    data: [5, 8, 6, 4, 3, 6],
+                    borderColor: '#e74c3c',
+                    tension: 0.4,
+                    fill: true,
+                    backgroundColor: 'rgba(231, 76, 60, 0.1)'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    }
                 },
-                options: {
-                    responsive: true,
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                            max: 100
-                        }
+                scales: {
+                    y: {
+                        beginAtZero: true
                     }
                 }
-            });
-
-            // Case Distribution by Court Chart
-            const courtDistributionCtx = document.getElementById('courtDistributionChart').getContext('2d');
-            new Chart(courtDistributionCtx, {
-                type: 'pie',
-                data: {
-                    labels: ['Supreme Court', 'High Court', 'District Court', 'Special Court'],
-                    datasets: [{
-                        data: [25, 35, 30, 10],
-                        backgroundColor: [
-                            'rgba(255, 99, 132, 0.6)',
-                            'rgba(54, 162, 235, 0.6)',
-                            'rgba(255, 206, 86, 0.6)',
-                            'rgba(75, 192, 192, 0.6)'
-                        ],
-                        borderColor: [
-                            'rgba(255, 99, 132, 1)',
-                            'rgba(54, 162, 235, 1)',
-                            'rgba(255, 206, 86, 1)',
-                            'rgba(75, 192, 192, 1)'
-                        ],
-                        borderWidth: 1
-                    }]
-                },
-                options: {
-                    responsive: true
-                }
-            });
-
-            // Monthly Case Volume Chart
-            const monthlyVolumeCtx = document.getElementById('monthlyVolumeChart').getContext('2d');
-            new Chart(monthlyVolumeCtx, {
-                type: 'line',
-                data: {
-                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-                    datasets: [{
-                        label: 'Case Volume',
-                        data: [120, 150, 180, 210, 240, 270, 300, 280, 250, 220, 190, 160],
-                        fill: false,
-                        borderColor: 'rgb(75, 192, 192)',
-                        tension: 0.1
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    scales: {
-                        y: {
-                            beginAtZero: true
-                        }
-                    }
-                }
-            });
-
-            // Document Usage by Type Chart
-            const documentUsageCtx = document.getElementById('documentUsageChart').getContext('2d');
-            new Chart(documentUsageCtx, {
-                type: 'doughnut',
-                data: {
-                    labels: ['Legal Briefs', 'Contracts', 'Evidence', 'Reports', 'Other'],
-                    datasets: [{
-                        data: [35, 25, 20, 15, 5],
-                        backgroundColor: [
-                            'rgba(255, 99, 132, 0.6)',
-                            'rgba(54, 162, 235, 0.6)',
-                            'rgba(255, 206, 86, 0.6)',
-                            'rgba(75, 192, 192, 0.6)',
-                            'rgba(153, 102, 255, 0.6)'
-                        ],
-                        borderColor: [
-                            'rgba(255, 99, 132, 1)',
-                            'rgba(54, 162, 235, 1)',
-                            'rgba(255, 206, 86, 1)',
-                            'rgba(75, 192, 192, 1)',
-                            'rgba(153, 102, 255, 1)'
-                        ],
-                        borderWidth: 1
-                    }]
-                },
-                options: {
-                    responsive: true
-                }
-            });
-        }
-
-        // Handle time range changes
-        document.getElementById('timeRange').addEventListener('change', function() {
-            // In a real application, this would fetch new data based on the selected time range
-            // For now, we'll just update the metrics with simulated data
-            updateMetrics(this.value);
+            }
         });
 
-        // Function to update metrics based on time range
-        function updateMetrics(days) {
-            // Simulated data updates based on time range
-            const metrics = {
-                '7': { cases: 1234, success: 78, documents: 5678, users: 456 },
-                '30': { cases: 4567, success: 75, documents: 12345, users: 789 },
-                '90': { cases: 12345, success: 72, documents: 34567, users: 1234 },
-                '365': { cases: 45678, success: 70, documents: 123456, users: 2345 }
-            };
-
-            const data = metrics[days];
-            document.querySelectorAll('.metric-value')[0].textContent = data.cases.toLocaleString();
-            document.querySelectorAll('.metric-value')[1].textContent = data.success + '%';
-            document.querySelectorAll('.metric-value')[2].textContent = data.documents.toLocaleString();
-            document.querySelectorAll('.metric-value')[3].textContent = data.users.toLocaleString();
-        }
+        // Distribution Chart
+        const distributionCtx = document.getElementById('distributionChart').getContext('2d');
+        new Chart(distributionCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Civil', 'Criminal', 'Family', 'Corporate', 'Other'],
+                datasets: [{
+                    data: [30, 25, 20, 15, 10],
+                    backgroundColor: [
+                        '#3498db',
+                        '#2ecc71',
+                        '#f1c40f',
+                        '#e74c3c',
+                        '#9b59b6'
+                    ]
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom'
+                    }
+                }
+            }
+        });
     </script>
 </body>
 </html> 

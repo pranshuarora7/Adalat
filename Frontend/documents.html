@@ -1,30 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Documents - Legal AI</title>
-    <link href="styles.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adalat - Document Management</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header>
-        <div class="logo">Legal AI</div>
-        <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="login.html">Login</a></li>
-                <li><a href="register.html">Register</a></li>
-                <li><a href="analytics.html">Analytics</a></li>
-                <li><a href="cases.html">Cases</a></li>
-            </ul>
-        </nav>
-    </header>
     <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-light">
-        <div class="container-fluid">
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
             <a class="navbar-brand" href="index.html">
-                <i class="fas fa-balance-scale"></i>
-                Legal Research Assistant
+                <i class="fas fa-balance-scale"></i> Adalat
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
@@ -32,22 +21,22 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="cases.html">Cases</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="features.html">Features</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="testimonials.html">Testimonials</a>
+                        <a class="nav-link" href="calculator.html">Calculator</a>
                     </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown">
-                            <i class="fas fa-user-circle"></i>
-                        </a>
-                        <ul class="dropdown-menu dropdown-menu-end">
-                            <li><a class="dropdown-item" href="profile.html">Profile</a></li>
-                            <li><a class="dropdown-item" href="settings.html">Settings</a></li>
-                            <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="login.html">Login</a></li>
-                            <li><a class="dropdown-item" href="register.html">Register</a></li>
-                        </ul>
+                    <li class="nav-item">
+                        <a class="nav-link" href="analytics.html">Analytics</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="profile.html">Profile</a>
                     </li>
                 </ul>
             </div>
@@ -55,117 +44,84 @@
     </nav>
 
     <!-- Main Content -->
-    <div class="container-fluid">
-        <div class="row">
-            <!-- Sidebar -->
-            <div class="col-md-3 col-lg-2 sidebar">
-                <div class="sidebar-header">
-                    <h4>Navigation</h4>
+    <main class="main-content">
+        <div class="container">
+            <div class="row mb-4">
+                <div class="col-md-6">
+                    <h1>Document Management</h1>
+                    <p class="text-muted">Manage and organize your legal documents efficiently</p>
                 </div>
-                <main>
-        <section class="documents-main">
-            <h2>Documents</h2>
-            <p>Add new documents and manage your documents</p>
-        </section>
-
-        <section class="documents-upload">
-            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#uploadModal">
-                <i class="fas fa-upload"></i> Upload Document
-            </button>
-        </section>
-
-        <section class="documents-list">
-            <div class="document">
-                <h3>Document 1</h3>
-                <p>Description of document 1.</p>
-                <p>Date: 2023-01-01</p>
-                <button>View</button>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="cases.html">
-                            <i class="fas fa-gavel"></i> Similar Cases
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="calculator.html">
-                            <i class="fas fa-calculator"></i> Win Calculator
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="documents.html">
-                            <i class="fas fa-file-alt"></i> Documents
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="analytics.html">
-                            <i class="fas fa-chart-line"></i> Analytics
-                        </a>
-                    </li>
-                </ul>
+                <div class="col-md-6 text-end">
+                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#uploadModal">
+                        <i class="fas fa-upload me-2"></i>Upload Document
+                    </button>
+                </div>
             </div>
 
-            <!-- Main Content Area -->
-            <div class="col-md-9 col-lg-10 main-content">
-                <div class="document">
-                <h3>Document 2</h3>
-                <p>Description of document 2.</p>
-                <p>Date: 2023-02-15</p>
-                <button>View</button>
-            </div>
-            <div class="document">
-                <h3>Document 3</h3>
-                <p>Description of document 3.</p>
-                <p>Date: 2023-03-22</p>
-                <button>View</button>
-            </div>
-            <div class="document">
-                <h3>Document 4</h3>
-                <p>Description of document 4.</p>
-                <p>Date: 2023-04-05</p>
-                <button>View</button>
-            </div>
-        </section>
-    </main>
-
-    <footer>
-        <p>&copy; 2023 Legal AI App</p>
-    </footer>
-
-</body>
-</html>
-                <div class="documents-container">
-                    <div class="documents-header">
-                        <h2>Documents</h2>
-                        <div class="document-actions">
-                            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#uploadModal">
-                                <i class="fas fa-upload"></i> Upload Document
-                            </button>
-                            <button class="btn btn-outline-primary" id="createFolder">
-                                <i class="fas fa-folder-plus"></i> New Folder
+            <!-- Search and Filter -->
+            <div class="card mb-4">
+                <div class="card-body">
+                    <div class="row g-3">
+                        <div class="col-md-4">
+                            <input type="text" class="form-control" placeholder="Search documents...">
+                        </div>
+                        <div class="col-md-3">
+                            <select class="form-select">
+                                <option value="">All Categories</option>
+                                <option value="contracts">Contracts</option>
+                                <option value="pleadings">Pleadings</option>
+                                <option value="evidence">Evidence</option>
+                                <option value="correspondence">Correspondence</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <select class="form-select">
+                                <option value="">All Cases</option>
+                                <option value="case1">Case #1234</option>
+                                <option value="case2">Case #5678</option>
+                            </select>
+                        </div>
+                        <div class="col-md-2">
+                            <button class="btn btn-outline-secondary w-100">
+                                <i class="fas fa-filter me-2"></i>Filter
                             </button>
                         </div>
                     </div>
-
-                    <!-- Document Filters -->
-                    <div class="document-filters">
-                        <select id="documentType" class="form-select">
-                            <option value="">All Types</option>
-                            <option value="contract">Contracts</option>
-                            <option value="brief">Legal Briefs</option>
-                            <option value="evidence">Evidence</option>
-                            <option value="report">Reports</option>
-                        </select>
-                        <input type="text" id="documentSearch" class="form-control" placeholder="Search documents...">
-                    </div>
-
-                    <!-- Document Grid -->
-                    <div class="documents-grid" id="documentsGrid">
-                        <!-- Documents will be loaded here -->
-                    </div>
                 </div>
             </div>
+
+            <!-- Documents Grid -->
+            <div class="documents-grid">
+                <!-- Document Card Template -->
+                <div class="document-card">
+                    <div class="document-icon">
+                        <i class="fas fa-file-pdf"></i>
+                    </div>
+                    <div class="document-info">
+                        <h5>Contract Agreement.pdf</h5>
+                        <p class="text-muted">Case #1234 - Contracts</p>
+                        <div class="document-meta">
+                            <span><i class="fas fa-calendar me-1"></i> 2024-03-15</span>
+                            <span class="ms-3"><i class="fas fa-user me-1"></i> John Doe</span>
+                        </div>
+                    </div>
+                    <div class="document-actions">
+                        <button class="btn btn-sm btn-outline-primary">
+                            <i class="fas fa-download"></i>
+                        </button>
+                        <button class="btn btn-sm btn-outline-secondary">
+                            <i class="fas fa-share"></i>
+                        </button>
+                        <button class="btn btn-sm btn-outline-danger">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Add more document cards here -->
+            </div>
         </div>
-    </div>
+    </main>
 
     <!-- Upload Modal -->
     <div class="modal fade" id="uploadModal" tabindex="-1">
@@ -176,252 +132,49 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
-                    <form id="uploadForm">
+                    <form>
                         <div class="mb-3">
-                            <label for="documentTitle" class="form-label">Document Title</label>
-                            <input type="text" class="form-control" id="documentTitle" required>
+                            <label class="form-label">Select File</label>
+                            <input type="file" class="form-control">
                         </div>
                         <div class="mb-3">
-                            <label for="documentType" class="form-label">Document Type</label>
-                            <select class="form-select" id="documentType" required>
-                                <option value="contract">Contract</option>
-                                <option value="brief">Legal Brief</option>
+                            <label class="form-label">Document Name</label>
+                            <input type="text" class="form-control">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Category</label>
+                            <select class="form-select">
+                                <option value="contracts">Contracts</option>
+                                <option value="pleadings">Pleadings</option>
                                 <option value="evidence">Evidence</option>
-                                <option value="report">Report</option>
+                                <option value="correspondence">Correspondence</option>
                             </select>
                         </div>
                         <div class="mb-3">
-                            <label for="documentFile" class="form-label">Select File</label>
-                            <input type="file" class="form-control" id="documentFile" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="documentDescription" class="form-label">Description</label>
-                            <textarea class="form-control" id="documentDescription" rows="3"></textarea>
+                            <label class="form-label">Associated Case</label>
+                            <select class="form-select">
+                                <option value="case1">Case #1234</option>
+                                <option value="case2">Case #5678</option>
+                            </select>
                         </div>
                     </form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                    <button type="button" class="btn btn-primary" id="uploadDocument">Upload</button>
+                    <button type="button" class="btn btn-primary">Upload</button>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Document Preview Modal -->
-    <div class="modal fade" id="previewModal" tabindex="-1">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Document Preview</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="document-preview">
-                        <h3 id="previewTitle"></h3>
-                        <div class="document-meta">
-                            <span class="badge bg-primary" id="previewType"></span>
-                            <span class="document-date" id="previewDate"></span>
-                        </div>
-                        <div class="document-description" id="previewDescription"></div>
-                        <div class="document-content" id="previewContent">
-                            <!-- Document content will be loaded here -->
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" id="downloadDocument">Download</button>
-                    <button type="button" class="btn btn-danger" id="deleteDocument">Delete</button>
-                </div>
-            </div>
+    <!-- Footer -->
+    <footer class="footer mt-5 py-3">
+        <div class="container text-center">
+            <p>&copy; 2024 Adalat. All rights reserved.</p>
         </div>
-    </div>
+    </footer>
 
-    <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="app.js"></script>
-    <script>
-        // Initialize AOS animations
-        AOS.init({
-            duration: 800,
-            easing: 'ease-in-out',
-            once: true
-        });
-
-        // Load documents when the page loads
-        document.addEventListener('DOMContentLoaded', function() {
-            loadDocuments();
-        });
-
-        // Function to load documents
-        function loadDocuments() {
-            const documentsGrid = document.getElementById('documentsGrid');
-            const documentType = document.getElementById('documentType').value;
-            const documentSearch = document.getElementById('documentSearch').value.toLowerCase();
-
-            // Simulated document data (replace with actual API call)
-            const documents = [
-                {
-                    id: 1,
-                    title: "Contract Agreement",
-                    type: "contract",
-                    date: "2023-01-15",
-                    description: "Standard contract agreement template",
-                    size: "2.5 MB",
-                    icon: "fa-file-contract"
-                },
-                {
-                    id: 2,
-                    title: "Legal Brief",
-                    type: "brief",
-                    date: "2023-02-20",
-                    description: "Case analysis and legal arguments",
-                    size: "1.8 MB",
-                    icon: "fa-file-alt"
-                },
-                {
-                    id: 3,
-                    title: "Evidence Report",
-                    type: "evidence",
-                    date: "2023-03-10",
-                    description: "Collection of evidence and analysis",
-                    size: "4.2 MB",
-                    icon: "fa-file-medical"
-                }
-            ];
-
-            // Filter documents
-            const filteredDocuments = documents.filter(doc => {
-                const matchesType = !documentType || doc.type === documentType;
-                const matchesSearch = !documentSearch || 
-                    doc.title.toLowerCase().includes(documentSearch) ||
-                    doc.description.toLowerCase().includes(documentSearch);
-                return matchesType && matchesSearch;
-            });
-
-            // Display documents
-            documentsGrid.innerHTML = '';
-            filteredDocuments.forEach(doc => {
-                const docCard = document.createElement('div');
-                docCard.className = 'document-card';
-                docCard.innerHTML = `
-                    <div class="document-icon">
-                        <i class="fas ${doc.icon}"></i>
-                    </div>
-                    <div class="document-info">
-                        <h3>${doc.title}</h3>
-                        <p>${doc.description}</p>
-                        <div class="document-meta">
-                            <span class="badge bg-primary">${doc.type}</span>
-                            <span class="document-date">${doc.date}</span>
-                            <span class="document-size">${doc.size}</span>
-                        </div>
-                    </div>
-                    <div class="document-actions">
-                        <button class="btn btn-sm btn-outline-primary view-document" data-doc-id="${doc.id}">
-                            <i class="fas fa-eye"></i>
-                        </button>
-                        <button class="btn btn-sm btn-outline-success download-document" data-doc-id="${doc.id}">
-                            <i class="fas fa-download"></i>
-                        </button>
-                        <button class="btn btn-sm btn-outline-danger delete-document" data-doc-id="${doc.id}">
-                            <i class="fas fa-trash"></i>
-                        </button>
-                    </div>
-                `;
-                documentsGrid.appendChild(docCard);
-            });
-
-            // Add event listeners
-            document.querySelectorAll('.view-document').forEach(button => {
-                button.addEventListener('click', function() {
-                    const docId = this.getAttribute('data-doc-id');
-                    const doc = documents.find(d => d.id === parseInt(docId));
-                    if (doc) {
-                        showDocumentPreview(doc);
-                    }
-                });
-            });
-
-            document.querySelectorAll('.download-document').forEach(button => {
-                button.addEventListener('click', function() {
-                    const docId = this.getAttribute('data-doc-id');
-                    downloadDocument(docId);
-                });
-            });
-
-            document.querySelectorAll('.delete-document').forEach(button => {
-                button.addEventListener('click', function() {
-                    const docId = this.getAttribute('data-doc-id');
-                    deleteDocument(docId);
-                });
-            });
-        }
-
-        // Function to show document preview
-        function showDocumentPreview(doc) {
-            document.getElementById('previewTitle').textContent = doc.title;
-            document.getElementById('previewType').textContent = doc.type;
-            document.getElementById('previewDate').textContent = doc.date;
-            document.getElementById('previewDescription').textContent = doc.description;
-            
-            // Simulate document content loading
-            document.getElementById('previewContent').innerHTML = `
-                <div class="document-preview-placeholder">
-                    <i class="fas ${doc.icon}"></i>
-                    <p>Document preview would be displayed here</p>
-                </div>
-            `;
-
-            const modal = new bootstrap.Modal(document.getElementById('previewModal'));
-            modal.show();
-        }
-
-        // Function to download document
-        function downloadDocument(docId) {
-            // Simulate download (replace with actual API call)
-            alert(`Downloading document ${docId}...`);
-        }
-
-        // Function to delete document
-        function deleteDocument(docId) {
-            if (confirm('Are you sure you want to delete this document?')) {
-                // Simulate deletion (replace with actual API call)
-                alert(`Document ${docId} deleted successfully`);
-                loadDocuments();
-            }
-        }
-
-        // Event listeners for filters
-        document.getElementById('documentType').addEventListener('change', loadDocuments);
-        document.getElementById('documentSearch').addEventListener('input', loadDocuments);
-
-        // Handle document upload
-        document.getElementById('uploadDocument').addEventListener('click', function() {
-            const form = document.getElementById('uploadForm');
-            if (form.checkValidity()) {
-                // Simulate upload (replace with actual API call)
-                alert('Document uploaded successfully');
-                const modal = bootstrap.Modal.getInstance(document.getElementById('uploadModal'));
-                modal.hide();
-                loadDocuments();
-            } else {
-                form.reportValidity();
-            }
-        });
-
-        // Handle new folder creation
-        document.getElementById('createFolder').addEventListener('click', function() {
-            const folderName = prompt('Enter folder name:');
-            if (folderName) {
-                // Simulate folder creation (replace with actual API call)
-                alert(`Folder "${folderName}" created successfully`);
-                loadDocuments();
-            }
-        });
-    </script>
 </body>
 </html>
