@@ -135,15 +135,15 @@ document.addEventListener('DOMContentLoaded', function() {
         if (e.key === 'Enter' && !e.shiftKey) {
             e.preventDefault();
             handleSendMessage();
-        }
-    });
-    
+    }
+});
+
     // Initialize new chat button
     document.getElementById('newChat').addEventListener('click', function() {
         chatMessages.innerHTML = '';
         addMessage("Hello! I'm your legal research assistant. How can I help you today?");
-    });
-    
+});
+
     // Initialize cases functionality
     const casesGrid = document.getElementById('casesGrid');
     const caseCategory = document.getElementById('caseCategory');
@@ -152,17 +152,17 @@ document.addEventListener('DOMContentLoaded', function() {
     function loadCases() {
         // Simulated case data (replace with actual API call)
         const cases = [
-            {
+        {
                 title: "Contract Dispute Resolution",
                 category: "Civil",
-                date: "2023-01-15",
+            date: "2023-01-15",
                 outcome: "Settled",
                 summary: "Successfully mediated a contract dispute between two corporations."
-            },
-            {
+        },
+        {
                 title: "Criminal Defense Case",
                 category: "Criminal",
-                date: "2023-02-20",
+            date: "2023-02-20",
                 outcome: "Acquitted",
                 summary: "Defended client against false accusations with strong evidence."
             }
@@ -275,7 +275,7 @@ async function handleCaseSubmit(e) {
     } catch (error) {
         console.error('Error:', error);
         alert('Failed to analyze case');
-    }
+            }
 }
 
 // Analyze case

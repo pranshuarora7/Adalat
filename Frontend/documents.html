@@ -1,15 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Documents - Legal Research Assistant</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Documents - Legal AI</title>
     <link href="styles.css" rel="stylesheet">
 </head>
 <body>
+    <header>
+        <div class="logo">Legal AI</div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="login.html">Login</a></li>
+                <li><a href="register.html">Register</a></li>
+                <li><a href="analytics.html">Analytics</a></li>
+                <li><a href="cases.html">Cases</a></li>
+            </ul>
+        </nav>
+    </header>
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container-fluid">
@@ -53,11 +62,24 @@
                 <div class="sidebar-header">
                     <h4>Navigation</h4>
                 </div>
-                <ul class="nav flex-column">
-                    <li class="nav-item">
-                        <a class="nav-link" href="index.html">
-                            <i class="fas fa-comments"></i> My Chats
-                        </a>
+                <main>
+        <section class="documents-main">
+            <h2>Documents</h2>
+            <p>Add new documents and manage your documents</p>
+        </section>
+
+        <section class="documents-upload">
+            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#uploadModal">
+                <i class="fas fa-upload"></i> Upload Document
+            </button>
+        </section>
+
+        <section class="documents-list">
+            <div class="document">
+                <h3>Document 1</h3>
+                <p>Description of document 1.</p>
+                <p>Date: 2023-01-01</p>
+                <button>View</button>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="cases.html">
@@ -84,6 +106,33 @@
 
             <!-- Main Content Area -->
             <div class="col-md-9 col-lg-10 main-content">
+                <div class="document">
+                <h3>Document 2</h3>
+                <p>Description of document 2.</p>
+                <p>Date: 2023-02-15</p>
+                <button>View</button>
+            </div>
+            <div class="document">
+                <h3>Document 3</h3>
+                <p>Description of document 3.</p>
+                <p>Date: 2023-03-22</p>
+                <button>View</button>
+            </div>
+            <div class="document">
+                <h3>Document 4</h3>
+                <p>Description of document 4.</p>
+                <p>Date: 2023-04-05</p>
+                <button>View</button>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2023 Legal AI App</p>
+    </footer>
+
+</body>
+</html>
                 <div class="documents-container">
                     <div class="documents-header">
                         <h2>Documents</h2>
@@ -375,4 +424,4 @@
         });
     </script>
 </body>
-</html> 
+</html>

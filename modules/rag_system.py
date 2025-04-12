@@ -13,17 +13,17 @@ class RAGSystem:
         self.case_texts = []
         self.case_metadata = []
         self.index_path = Path('data/rag_index')
-        self.load_or_create_index()
+        self.load_or_create_index() 
 
-    def load_or_create_index(self):
-        """Load existing index or create new one from IL-TUR dataset"""
+    def load_or_create_index(self, dataset_path="Exploration-Lab/IL-TUR"):
+        """Load existing index or create new one from specified dataset"""
         if self.index_path.exists():
             self.load_index()
         else:
-            self.create_index()
+            self.create_index(dataset_path)
             self.save_index()
 
-    def create_index(self):
+    def create_index(self,dataset_path):
         """Create FAISS index from IL-TUR dataset"""
         print("Loading IL-TUR dataset...")
         dataset = load_dataset("Exploration-Lab/IL-TUR", "IL-PCR")
@@ -31,7 +31,10 @@ class RAGSystem:
         print("Processing cases...")
         for split in ['train_queries', 'dev_queries', 'test_queries']:
             for case in dataset[split]:
-                text = " ".join(case['text'])
+                if "text" in case:
+                    text = " ".join(case['text'])
+                else:
+                    text=" ".join(case['document'])
                 self.case_texts.append(text)
                 self.case_metadata.append({
                     'id': case['id'],

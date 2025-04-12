@@ -1,9 +1,36 @@
+/* Basic Styles */
+body {
+    background-color: #f4f4f4; /* Light background */
+    color: #333; /* Dark text */
+    font-family: 'Roboto', sans-serif;
+    display: flex;
+    font-family: Arial, sans-serif;
+    margin: 0;
+}
+
+header {
+    background-color: #fff; /* Light header */
+    padding: 10px 20px;
+    display: flex;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+}
+
+.logo {
+    font-weight: bold;
+}
 /* Reset and Base Styles */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
+
 
 :root {
     --primary-color: #4a6bff;
@@ -21,11 +48,21 @@
     --gradient-accent: linear-gradient(135deg, #00cec9 0%, #00b894 100%);
 }
 
-body {
-    font-family: 'Roboto', sans-serif;
-    background-color: var(--light-bg);
-    color: var(--text-dark);
-    line-height: 1.6;
+/* Navigation */
+nav ul {
+    list-style: none;
+    padding: 0;
+    display: flex; /* Horizontal layout */
+}
+
+nav ul li {
+    margin-left: 20px; /* Space between links */
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: blue; /* Blue links */
+    font-weight: bold;
 }
 
 /* Navigation */
@@ -88,6 +125,7 @@ body {
     margin-top: 80px;
 }
 
+
 .sidebar-header {
     padding: 0 1.5rem 1.5rem;
     border-bottom: 1px solid var(--border-color);
@@ -133,6 +171,7 @@ body {
     margin-left: 250px;
     margin-top: 80px;
     padding: 2rem;
+    display: flex;
     min-height: calc(100vh - 80px);
 }
 
@@ -173,6 +212,7 @@ body {
     transition: all 0.3s ease;
     padding: 0.5rem 1rem;
     border-radius: 4px;
+    text-decoration: none;
 }
 
 .chat-actions .btn:hover {
@@ -266,6 +306,66 @@ body {
 .chat-input button:hover {
     transform: translateY(-2px);
     box-shadow: 0 4px 6px var(--shadow-color);
+}
+
+/* Login and Register Forms */
+
+.login-form,
+.register-form {
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 400px;
+    margin: 0 auto;
+    margin-top: 100px;
+}
+
+.login-form h2,
+.register-form h2 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: var(--primary-color);
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--text-dark);
+}
+
+.form-group input {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(74, 107, 255, 0.2);
+}
+
+button[type="submit"] {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    width: 100%;
+    transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+    background-color: #3b57d6;
 }
 
 /* Cases Section */
@@ -557,3 +657,162 @@ body {
         background-color: #333;
     }
 } 
+
+
+/* Main Section */
+
+main {
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 120px); /* Adjust to fit header and footer */
+}
+
+.main-content{
+    padding: 0;
+    margin: 0;
+}
+
+/* Footer Styles */
+footer {
+    background-color: #f0f0f0;
+    color: #333;
+    text-align: center;
+    padding: 10px 0;
+    border-top: 1px solid #ddd;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+/* Links */
+a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Calendar Styles */
+.calendar-view{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.calendar {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 100%;
+    max-width: 800px;
+}
+
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.calendar-header button {
+    background-color: #f0f0f0;
+    border: none;
+    padding: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.calendar-days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.day-of-week {
+    font-weight: bold;
+    padding: 10px;
+}
+
+.calendar-dates {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+}
+
+.day {
+    padding: 10px;
+    border: 1px solid #eee;
+    text-align: center;
+    transition: background-color 0.3s ease;
+}
+
+.day:hover {
+    background-color: #f0f0f0;
+}
+
+.add-appointment{
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 100%;
+    max-width: 800px;
+    margin-top: 20px;
+}
+
+.add-appointment h3{
+    margin-bottom: 10px;
+}
+
+.add-appointment label{
+    margin-top: 10px;
+    display: block;
+}
+
+.add-appointment input,
+.add-appointment textarea{
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+.add-appointment button[type="submit"]{
+    margin-top: 10px;
+}
+
+/* Profile Styles */
+.profile-main {
+    text-align: center;
+}
+
+.user-details {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 100%;
+    max-width: 600px;
+    margin: 20px auto;
+}
+
+.detail {
+    margin-bottom: 10px;
+}
+
+#logoutButton {
+    background-color: #ff6b6b; /* Red */
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+}
