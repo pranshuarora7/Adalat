@@ -1,3 +1,0 @@
-# We just import the `d` version.
-import_paths:
-  - tests/test_configs/mvp_v2_x_d

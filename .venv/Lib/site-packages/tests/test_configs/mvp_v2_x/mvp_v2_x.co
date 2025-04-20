@@ -1,5 +1,0 @@
-flow main
-  match UtteranceUserActionFinished()
-  await UtteranceBotAction(script="Hello world!")
-  match UtteranceUserActionFinished()
-  await UtteranceBotAction(script="Hello again!")

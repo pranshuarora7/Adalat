@@ -1,6 +1,0 @@
-define user express greeting
-  "hey"
-  "hei"
-
-define flow
-  user express greeting

@@ -1,3 +1,0 @@
-flow main
-    match Event(param=42)
-    send StartUtteranceBotAction(script="Success")
