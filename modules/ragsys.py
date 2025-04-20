@@ -1,3 +1,4 @@
+# ragsys.py
 from datasets import load_dataset
 from sentence_transformers import SentenceTransformer
 import numpy as np
@@ -6,18 +7,20 @@ import os
 import pickle
 from pathlib import Path
 
+
 class RAGSystem:
     def __init__(self, datasets_to_load):
-        # Initialize SentenceTransformer model
         self.model = SentenceTransformer('all-MiniLM-L6-v2')
         self.index = None
         self.case_texts = []
         self.case_metadata = []
-        self.index_path = Path('data/rag_index')
+
+        base_path = Path(__file__).resolve().parent.parent
+        self.index_path = base_path / 'data' / 'rag_index'
+
         self.load_or_create_index(datasets_to_load)
 
     def load_or_create_index(self, datasets_to_load):
-        """Load existing index or create new one from specified dataset"""
         if self.index_path.exists():
             self.load_index()
         else:
@@ -25,32 +28,20 @@ class RAGSystem:
             self.save_index()
 
     def create_index(self, datasets_to_load):
-        """Create FAISS index from the provided list of datasets"""
-        print("Loading and processing datasets...")
-
         for dataset_path, config_name, splits in datasets_to_load:
             dataset = load_dataset(dataset_path, config_name)
-
             for split in splits:
                 if split not in dataset:
                     continue
                 for case in dataset[split]:
-                    # Normalize text
-                    text = None
-                    if "text" in case:
-                        text = case["text"]
-                    elif "document" in case:
-                        text = case["document"]
-
+                    text = case.get("text") or case.get("document")
                     if isinstance(text, list):
                         text = " ".join(text)
-
                     if not isinstance(text, str):
-                        continue  # skip if not a valid string
-
+                        continue
                     text = text.strip()
                     if not text:
-                        continue  # skip empty strings
+                        continue
 
                     self.case_texts.append(text)
                     self.case_metadata.append({
@@ -58,24 +49,14 @@ class RAGSystem:
                         'relevant_candidates': case.get('relevant_candidates', [])
                     })
 
-        print(f"Loaded {len(self.case_texts)} cases.")
-
-        print("Creating embeddings...")
         embeddings = self.model.encode(self.case_texts, show_progress_bar=True)
-
-        print("Building FAISS index...")
         dimension = embeddings.shape[1]
         self.index = faiss.IndexFlatL2(dimension)
         self.index.add(embeddings.astype('float32'))
 
     def save_index(self):
-        """Save FAISS index and metadata"""
         self.index_path.mkdir(parents=True, exist_ok=True)
-
-        # Save FAISS index
         faiss.write_index(self.index, str(self.index_path / 'index.faiss'))
-
-        # Save metadata
         with open(self.index_path / 'metadata.pkl', 'wb') as f:
             pickle.dump({
                 'case_texts': self.case_texts,
@@ -83,21 +64,15 @@ class RAGSystem:
             }, f)
 
     def load_index(self):
-        """Load FAISS index and metadata"""
         self.index = faiss.read_index(str(self.index_path / 'index.faiss'))
-
         with open(self.index_path / 'metadata.pkl', 'rb') as f:
             data = pickle.load(f)
             self.case_texts = data['case_texts']
             self.case_metadata = data['case_metadata']
 
     def retrieve_similar_cases(self, query_text, k=5):
-        """Retrieve k most similar cases to the query"""
         query_embedding = self.model.encode([query_text])[0]
-        distances, indices = self.index.search(
-            query_embedding.reshape(1, -1).astype('float32'),
-            k
-        )
+        distances, indices = self.index.search(query_embedding.reshape(1, -1).astype('float32'), k)
 
         results = []
         for idx, distance in zip(indices[0], distances[0]):
@@ -107,32 +82,21 @@ class RAGSystem:
                 'similarity_score': float(1 / (1 + distance)),
                 'relevant_cases': self.case_metadata[idx]['relevant_candidates']
             })
-
         return results
 
 
-# Global instance
+# Singleton instance to avoid reloading for every call
 datasets_to_load = [
     ("Exploration-Lab/IL-TUR", "bail", ["train_all"]),
     ("Exploration-Lab/IL-TUR", "cjpe", ["multi_train"]),
     ("Exploration-Lab/IL-TUR", "lmt", ["acts"]),
-    ("Exploration-Lab/IL-TUR","lsi",["train","test","dev","statutes"]),
-    ("Exploration-Lab/IL-TUR","pcr",["train_candidates","train_queries"]),
-    ("Exploration-Lab/IL-TUR","summ",["train","test"]),
+    ("Exploration-Lab/IL-TUR", "lsi", ["train", "test", "dev", "statutes"]),
+    ("Exploration-Lab/IL-TUR", "pcr", ["train_candidates", "train_queries"]),
+    ("Exploration-Lab/IL-TUR", "summ", ["train", "test"]),
 ]
-
 rag_system = RAGSystem(datasets_to_load)
 
-def retrieve_similar_cases(query_text):
-    """Wrapper function to retrieve similar cases"""
-    return rag_system.retrieve_similar_cases(query_text)
 
-
-# Example query to retrieve similar cases
-query_text = "What is the penalty for fraud?"
-results = retrieve_similar_cases(query_text)
-
-# Print the results
-for result in results:
-    print(f"ID: {result['id']}, Similarity: {result['similarity_score']:.4f}")
-    print(f"Text: {result['text'][:200]}...")
+def get_similar_cases(user_input: str, k=5):
+    """Used by app.py to get RAG results"""
+    return rag_system.retrieve_similar_cases(user_input, k)
