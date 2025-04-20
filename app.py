@@ -12,10 +12,11 @@ CORS(app)
 
 # Import modules
 from modules.document_processor import process_document
-from modules.rag_system import retrieve_similar_cases
+from modules.ragsys import get_similar_cases
 from modules.llm_service import generate_legal_analysis
 from modules.win_prediction import predict_win_probability
 from modules.chat_history import save_chat_history, load_chat_history
+
 
 
 # User data class
