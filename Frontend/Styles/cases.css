@@ -1,0 +1,209 @@
+/* Base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: #f5f7fa;
+    color: #333;
+}
+
+/* Navbar */
+.navbar {
+    background: #004aad;
+    padding: 1rem 2rem;
+}
+
+.navbar-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: white;
+    text-decoration: none;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+}
+
+.nav-links li a {
+    color: white;
+    text-decoration: none;
+}
+
+/* Search Section */
+.search-section {
+    text-align: center;
+    padding: 3rem 2rem;
+}
+
+.search-section textarea {
+    width: 60%;
+    padding: 1rem;
+    font-size: 1rem;
+    margin-top: 1rem;
+    height: 100px;
+    resize: vertical;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+}
+
+.search-section button {
+    padding: 0.8rem 1.5rem;
+    margin-left: 1rem;
+    margin-top: 1rem;
+    font-size: 1rem;
+    background: #004aad;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.search-section button:hover {
+    background: #003080;
+}
+
+#loading {
+    margin-top: 2rem;
+    font-size: 1.2rem;
+    color: #004aad;
+}
+
+/* Results Section */
+#resultsSection {
+    padding: 2rem;
+}
+
+#casesContainer {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.case-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+}
+
+.case-card:hover {
+    transform: translateY(-8px);
+}
+
+.case-card h3 {
+    color: #004aad;
+    margin-bottom: 1rem;
+}
+
+.case-card p {
+    margin-bottom: 0.5rem;
+}
+
+.case-card button {
+    margin-top: 1rem;
+    background: #007bff;
+    color: white;
+    padding: 0.6rem 1rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.case-card button:hover {
+    background: #0056b3;
+}
+
+/* Chart Container */
+.chart-container {
+    max-width: 400px;
+    margin: 2rem auto;
+}
+
+/* Footer */
+.footer {
+    text-align: center;
+    padding: 2rem;
+    background: #004aad;
+    color: white;
+    margin-top: 4rem;
+}
+
+/* Hidden Utility */
+.hidden {
+    display: none;
+}
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.7);
+    /* Dark background */
+}
+
+.modal.show {
+    display: block;
+}
+
+.modal-content {
+    background-color: #fff;
+    margin: 5% auto;
+    padding: 20px;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 700px;
+    /* max width */
+    max-height: 80vh;
+    /* max height */
+    overflow-y: auto;
+    /* Scroll inside */
+    position: relative;
+}
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 1.8rem;
+    cursor: pointer;
+}
+
+.hidden {
+    display: none;
+}
+
+.expand-btn {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 0.7rem 1.2rem;
+    font-size: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 1rem;
+    transition: background 0.3s ease;
+}
+
+.expand-btn:hover {
+    background-color: #45a049;
+}
