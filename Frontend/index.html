@@ -1,114 +1,116 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Adalat - Legal Research Assistant</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Playfair+Display:wght@400;500;600;700&display=swap"
-        rel="stylesheet">
-    <link href="styles.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+    <link href="styles.css" rel="stylesheet" />
 </head>
 
 <body>
-    <!-- Top Navigation Bar -->
-    <nav class="navbar navbar-expand-lg navbar-dark">
-        <div class="container">
-            <a class="navbar-brand" href="index.html">
-                <i class="fas fa-balance-scale"></i> Adalat
-            </a>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#"><i class="fas fa-balance-scale me-2"></i>Adalat</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav me-auto">
-                    <li class="nav-item">
-                        <a class="nav-link active" href="index.html">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="pages/cases.html">Cases</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="features.html">Features</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="pages/calculator.html">Calculator</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="analytics.html">Analytics</a>
-                    </li>
+                    <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="pages/cases.html">Cases</a></li>
+                    <li class="nav-item"><a class="nav-link" href="pages/calculator.html">Calculator</a></li>
+                    <li class="nav-item"><a class="nav-link" href="analytics.html">Analytics</a></li>
                 </ul>
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="profile.html">
-                            <i class="fas fa-user"></i> Profile
-                        </a>
-                    </li>
-                </ul>
+                <div class="d-flex align-items-center">
+                    <button id="themeToggle" class="btn btn-outline-light me-2"><i class="fas fa-moon"></i></button>
+                </div>
             </div>
         </div>
     </nav>
 
+    <!-- News Ticker -->
+    <div class="news-panel">
+        <div class="container-fluid">
+            <div class="news-ticker" id="newsTicker">
+                <!-- News dynamically inserted -->
+            </div>
+        </div>
+    </div>
+
     <!-- Main Content -->
-    <div class="container mt-4">
-        <div class="row">
-            <!-- Chat Section -->
+    <div class="container-fluid">
+        <div class="row g-4 py-4">
+
+            <!-- Left Column -->
             <div class="col-lg-8">
+                <!-- Chat Section -->
                 <div class="chat-container">
-                    <div class="chat-header">
-                        <h4><i class="fas fa-comments me-2"></i>Legal Research Assistant</h4>
-                        <div class="chat-actions">
-                            <button class="btn btn-sm btn-outline-light">
-                                <i class="fas fa-plus"></i> New Chat
-                            </button>
-                        </div>
+                    <div class="chat-header d-flex justify-content-between align-items-center">
+                        <h5><i class="fas fa-comments me-2"></i>Legal Chat Assistant</h5>
+                        <button id="newChat" class="btn btn-sm btn-light"><i class="fas fa-plus me-1"></i>New
+                            Chat</button>
                     </div>
                     <div class="chat-messages" id="chatMessages">
                         <div class="message assistant-message">
-                            <p>Hello! I'm your legal research assistant. How can I help you today?</p>
+                            <i class="fas fa-robot me-2"></i><strong>Adalat Assistant</strong>
+                            <p>👩‍⚖️ How can I assist you today with your legal case?</p>
                         </div>
                     </div>
                     <div class="chat-input">
-                        <textarea id="userInput" placeholder="Type your legal question here..."></textarea>
-                        <button id="sendMessage" class="btn btn-primary">
-                            <i class="fas fa-paper-plane"></i>
-                        </button>
+                        <div class="input-group">
+                            <textarea id="userInput" class="form-control"
+                                placeholder="Ask your legal question..."></textarea>
+                            <button id="sendMessage" class="btn btn-primary"><i class="fas fa-paper-plane"></i></button>
+                        </div>
+                    </div>
+                    <div class="chat-options row g-2">
+                        <div class="col"><button class="btn btn-outline-primary w-100"><i
+                                    class="fas fa-road me-2"></i>Roadmap</button></div>
+                        <div class="col"><button class="btn btn-outline-primary w-100"><i
+                                    class="fas fa-gavel me-2"></i>Arguments</button></div>
+                        <div class="col"><button class="btn btn-outline-primary w-100"><i
+                                    class="fas fa-chart-bar me-2"></i>Analyze</button></div>
                     </div>
                 </div>
             </div>
 
-            <!-- Quick Stats -->
+            <!-- Right Column -->
             <div class="col-lg-4">
-                <div class="stats-container">
-                    <div class="stat-card">
-                        <div class="stat-icon">
-                            <i class="fas fa-gavel"></i>
+                <!-- Quick Actions -->
+                <div class="features-container">
+                    <h5><i class="fas fa-bolt me-2"></i>Quick Actions</h5>
+                    <div class="row g-3">
+                        <div class="col-6">
+                            <div class="feature-tile"><i class="fas fa-chart-line"></i>
+                                <div>Win Prediction</div>
+                            </div>
                         </div>
-                        <div class="stat-info">
-                            <h3>24</h3>
-                            <p>Active Cases</p>
+                        <div class="col-6">
+                            <div class="feature-tile"><i class="fas fa-book"></i>
+                                <div>Similar Cases</div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="feature-tile"><i class="fas fa-brain"></i>
+                                <div>Legal Analytics</div>
+                            </div>
                         </div>
                     </div>
-                    <div class="stat-card">
-                        <div class="stat-icon">
-                            <i class="fas fa-chart-line"></i>
-                        </div>
-                        <div class="stat-info">
-                            <h3>85%</h3>
-                            <p>Success Rate</p>
-                        </div>
-                    </div>
-                    <div class="quick-links">
-                        <h5>Quick Links</h5>
-                        <ul>
-                            <li><a href="cases.html"><i class="fas fa-folder"></i> Recent Cases</a></li>
-                            <li><a href="calculator.html"><i class="fas fa-calculator"></i> Win Calculator</a></li>
-                            <li><a href="analytics.html"><i class="fas fa-chart-bar"></i> Analytics</a></li>
-                        </ul>
-                    </div>
+                </div>
+
+                <!-- IPC Section Finder -->
+                <div class="features-container">
+                    <h5><i class="fas fa-search me-2"></i>IPC Section Finder</h5>
+                    <input type="text" id="ipcInput" class="form-control mb-2"
+                        placeholder="Enter IPC section or keyword..." />
+                    <button class="btn btn-primary w-100" onclick="searchIPC()">Find Section</button>
+                    <div id="ipcResult" class="mt-3"></div>
                 </div>
             </div>
         </div>
