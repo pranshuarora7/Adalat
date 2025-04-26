@@ -1,10 +1,6 @@
-from transformers import AutoModelForCausalLM, AutoTokenizer, Trainer, TrainingArguments, Dataset, default_data_collator
-import torch
-import os
-import random
-from datasets import load_dataset
+from transformers import AutoModelForCausalLM, AutoTokenizer
 from pathlib import Path
-
+import torch
 
 class LegalLLM:
     def __init__(self):
@@ -13,95 +9,82 @@ class LegalLLM:
         self.tokenizer = None
         
         self.model_path = Path('models/legal_llm')
-        self.load_or_finetune_model()
+        if self.model_path.exists():
+            self.load_model()
+        else:
+            self.load_base_model()
 
-    def load_or_finetune_model(self):
-        """Load existing model or finetune on legal data"""
-        self.model = AutoModelForCausalLM.from_pretrained(self.model_name)
+    def load_base_model(self):
+        """Load the base Phi-2 model from Hugging Face"""
+        print("Loading base model from Hugging Face...")
+        self.model = AutoModelForCausalLM.from_pretrained(self.model_name, torch_dtype=torch.float32)
         self.tokenizer = AutoTokenizer.from_pretrained(self.model_name)
-        self.finetune_model()
-        self.save_model()
+
+        # Set padding token manually
+        self.tokenizer.pad_token = self.tokenizer.eos_token
+
+        print("Base model loaded successfully.")
 
     def load_model(self):
-        """Load the finetuned model"""
+        """Load a saved model if exists"""
+        print("Loading saved model from disk...")
         self.model = AutoModelForCausalLM.from_pretrained(str(self.model_path))
         self.tokenizer = AutoTokenizer.from_pretrained(str(self.model_path))
 
-    def save_model(self):
-        """Save the finetuned model"""
-        self.model_path.mkdir(parents=True, exist_ok=True)
-        self.model.save_pretrained(str(self.model_path))
-        self.tokenizer.save_pretrained(str(self.model_path))
+        self.tokenizer.pad_token = self.tokenizer.eos_token
+        print("Saved model loaded successfully.")
 
-    def finetune_model(self):
-        """Finetune the model on legal data"""
-        print("Loading IL-TUR dataset...")
-        dataset = load_dataset("Exploration-Lab/IL-TUR", "IL-PCR")
-
-        # Prepare training data
-        train_data = []
-        for split in ['train_queries']:
-            for case in dataset[split]:
-                if 'text' in case:
-                    text = " ".join(case['text'])
-                else:
-                    text = " ".join(case['document'])
-
-                relevant_candidates = case['relevant_candidates']
-                if relevant_candidates:
-                    for candidate in relevant_candidates:
-                        prompt = f"Given the legal case: {text} what are the relevant cases: {candidate}"
-                        train_data.append(prompt)
-
-        # Create dataset
-        train_dataset = Dataset.from_dict({"text": train_data})
-        tokenized_dataset = train_dataset.map(lambda examples: self.tokenizer(examples["text"]), batched=True)
-        print("Training model...")
-        training_args = TrainingArguments(
-            output_dir="models/training_output",
-            num_train_epochs=3,
-            per_device_train_batch_size=1,
-            logging_dir="logs"
-        )
-        trainer = Trainer(
-            model=self.model, args=training_args, train_dataset=tokenized_dataset, data_collator=default_data_collator
-        )
-        trainer.train()
-
-    def generate_response(self, prompt, system_prompts=None, max_length=500):
-        """Generate response from the model"""
-        inputs = self.tokenizer(prompt, return_tensors="pt")
+    def generate_response(self, prompt, max_length=200):
+        """Generate a response for the given prompt"""
+        inputs = self.tokenizer(prompt, return_tensors="pt", padding=True)
         outputs = self.model.generate(
-            inputs.input_ids,
+            input_ids=inputs.input_ids,
+            attention_mask=inputs.attention_mask,
             max_length=max_length,
             num_return_sequences=1,
             temperature=0.7,
             top_p=0.9,
-            do_sample=True
+            do_sample=True,
+            pad_token_id=self.tokenizer.eos_token_id
         )
         response = self.tokenizer.decode(outputs[0], skip_special_tokens=True)
         return response
 
-# Global instance
+
+# Instantiate the global LegalLLM object
 legal_llm = LegalLLM()
 
 
-def generate_legal_analysis(user_message, chat_history):
-    """Generate legal analysis using the LLM"""
-    # Construct prompt with chat history and user message
-    prompt = "You are a legal research assistant. Analyze the following case and provide insights:\n\n"
+# 🎯 Function 1: Create Case Roadmap
+def create_case_roadmap(case_details: str) -> str:
+    """Create a detailed roadmap on how to approach the case."""
+    prompt = f"You are a senior legal strategist. Based on the following case details, create a full step-by-step roadmap for winning or defending the case, covering investigation, filing, arguments, and possible appeals:\n\nCase Details:\n{case_details}\n\nRoadmap:"
+    roadmap = legal_llm.generate_response(prompt)
+    return roadmap
 
-    # Add chat history if available
-    if chat_history:
-        prompt += "Previous conversation:\n"
-        for msg in chat_history:
-            role = "User" if msg['role'] == 'user' else "Assistant"
-            prompt += f"{role}: {msg['content']}\n"
-        prompt += "\n"
 
-    prompt += f"User: {user_message}\nAssistant:"
+# 🎯 Function 2: Generate Strong Court Arguments
+def generate_strong_arguments(case_details: str) -> str:
+    """Suggest strong, attention-catching court arguments for the case."""
+    prompt = f"You are an experienced trial lawyer. Given the case details below, list powerful and persuasive court arguments that can significantly improve the chance of winning:\n\nCase Details:\n{case_details}\n\nArguments:"
+    arguments = legal_llm.generate_response(prompt)
+    return arguments
 
-    # Generate response
-    response = legal_llm.generate_response(prompt)
 
-    return response
+# 🎯 Function 3: Detailed Case Analysis
+def analyze_case_evidence(case_details: str) -> str:
+    """Analyze the case and how different evidences could affect the chances."""
+    prompt = f"You are a legal analyst. Analyze the case given below. Mention the impact of different types of evidence, risks involved, and how the case can be strengthened:\n\nCase Details:\n{case_details}\n\nAnalysis:"
+    analysis = legal_llm.generate_response(prompt)
+    return analysis
+
+if __name__ == "__main__":
+    case_text = "A company is being sued for breach of contract regarding a missed delivery deadline for essential goods."
+    print("\n=== Case Roadmap ===")
+    print(create_case_roadmap(case_text))
+    
+    print("\n=== Strong Court Arguments ===")
+    print(generate_strong_arguments(case_text))
+    
+    print("\n=== Case Evidence Analysis ===")
+    print(analyze_case_evidence(case_text))
