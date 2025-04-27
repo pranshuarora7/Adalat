@@ -11,6 +11,11 @@ CORS(app)
 
 from modules.ragsys import get_similar_cases
 from modules.win_prediction import predict_win_probability
+from modules.llm_service import (
+    generate_case_roadmap,
+    generate_strong_arguments,
+    generate_case_evidence_analysis,
+)
 
 
 @app.route("/api/retrieve-similar-cases", methods=["POST"])
@@ -35,6 +40,45 @@ def predict_win():
 
     probability = predict_win_probability(case_text)
     return jsonify({"probability": probability})
+
+
+# 🎯 New API: Create Case Roadmap
+@app.route("/api/create-case-roadmap", methods=["POST"])
+def case_roadmap():
+    data = request.json
+    case_text = data.get("case_details", "")
+
+    if not case_text:
+        return jsonify({"error": "Case details not provided"}), 400
+
+    roadmap = generate_case_roadmap(case_text)
+    return jsonify({"roadmap": roadmap})
+
+
+# 🎯 New API: Generate Strong Court Arguments
+@app.route("/api/generate-arguments", methods=["POST"])
+def court_arguments():
+    data = request.json
+    case_text = data.get("case_details", "")
+
+    if not case_text:
+        return jsonify({"error": "Case details not provided"}), 400
+
+    arguments = generate_strong_arguments(case_text)
+    return jsonify({"arguments": arguments})
+
+
+# 🎯 New API: Analyze Case Evidence
+@app.route("/api/analyze-evidence", methods=["POST"])
+def evidence_analysis():
+    data = request.json
+    case_text = data.get("case_details", "")
+
+    if not case_text:
+        return jsonify({"error": "Case details not provided"}), 400
+
+    analysis = generate_case_evidence_analysis(case_text)
+    return jsonify({"analysis": analysis})
 
 
 if __name__ == "__main__":

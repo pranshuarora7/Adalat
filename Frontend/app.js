@@ -5,21 +5,17 @@ async function fetchNews() {
         const data = await response.json();
         const newsTicker = document.getElementById('newsTicker');
 
-        // Clear existing news
         newsTicker.innerHTML = '';
 
-        // Filter and process news items
         const filteredNews = data.results
             .filter(article => {
-                // Filter out sensitive content
                 const sensitiveKeywords = ['terrorist', 'attack', 'murder', 'killed', 'dead', 'bomb', 'shoot'];
                 const title = article.title.toLowerCase();
                 return !sensitiveKeywords.some(keyword => title.includes(keyword));
             })
-            .slice(0, 5); // Take top 5 filtered results
+            .slice(0, 5);
 
         if (filteredNews.length === 0) {
-            // Fallback to default news if no filtered results
             newsTicker.innerHTML = `
                 <div class="news-item">
                     <i class="fas fa-newspaper"></i>
@@ -33,7 +29,6 @@ async function fetchNews() {
             return;
         }
 
-        // Create news items
         filteredNews.forEach(article => {
             const newsItem = document.createElement('div');
             newsItem.className = 'news-item';
@@ -44,17 +39,14 @@ async function fetchNews() {
             newsTicker.appendChild(newsItem);
         });
 
-        // Clone the news items for continuous scrolling
         const newsItems = newsTicker.innerHTML;
         newsTicker.innerHTML = newsItems + newsItems;
 
-        // Adjust animation duration based on content length
         const totalWidth = newsTicker.scrollWidth;
-        const duration = totalWidth / 200; // Increased speed (100px per second)
+        const duration = totalWidth / 200;
         newsTicker.style.animationDuration = `${duration}s`;
     } catch (error) {
         console.error('Error fetching news:', error);
-        // Fallback news items
         const newsTicker = document.getElementById('newsTicker');
         newsTicker.innerHTML = `
             <div class="news-item">
@@ -104,16 +96,48 @@ function addMessage(message, isUser = false) {
     chatMessages.appendChild(messageDiv);
     chatMessages.scrollTop = chatMessages.scrollHeight;
 }
+const BASE_URL = "http://127.0.0.1:5000"; // or your Flask server URL
 
+async function sendPromptToLLM(apiEndpoint, caseDetails) {
+    addMessage("⏳ Processing your request. Please wait...");
+    try {
+        const response = await fetch(BASE_URL + apiEndpoint, { // 👈 Prefix BASE_URL
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ case_details: caseDetails })
+        });
+
+        const data = await response.json();
+
+        chatMessages.lastChild.remove(); // Remove loading message
+
+        if (data.error) {
+            addMessage(`❌ Error: ${data.error}`);
+        } else {
+            const key = Object.keys(data)[0]; // roadmap / arguments / analysis
+            addMessage(data[key]);
+        }
+    } catch (error) {
+        console.error("Error:", error);
+        chatMessages.lastChild.remove();
+        addMessage("❌ Something went wrong. Please try again.");
+    }
+}
+// Select buttons by ID (very reliable)
+const roadmapBtn = document.getElementById('roadmapBtn');
+const argumentsBtn = document.getElementById('argumentsBtn');
+const analysisBtn = document.getElementById('analysisBtn');
+
+
+// Send message logic
 sendMessage.addEventListener('click', () => {
     const message = userInput.value.trim();
     if (message) {
         addMessage(message, true);
+        sendPromptToLLM("/api/create-case-roadmap", message); // Default action
         userInput.value = '';
-        // Simulate assistant response
-        setTimeout(() => {
-            addMessage("I'm processing your request. Please wait...");
-        }, 1000);
     }
 });
 
@@ -136,14 +160,37 @@ newChat.addEventListener('click', () => {
     `;
 });
 
-// Initialize
-document.addEventListener('DOMContentLoaded', () => {
-    fetchNews();
-    // Refresh news every 30 seconds
-    setInterval(fetchNews, 30000);
+// Predefined Buttons Logic
+roadmapBtn.addEventListener('click', () => {
+    const caseDetails = userInput.value.trim();
+    if (caseDetails) {
+        addMessage(caseDetails, true);
+        sendPromptToLLM("/api/create-case-roadmap", caseDetails);
+        userInput.value = '';
+    }
 });
 
-// IPC Section Finder (Dummy logic for now)
+argumentsBtn.addEventListener('click', () => {
+    const caseDetails = userInput.value.trim();
+    if (caseDetails) {
+        addMessage(caseDetails, true);
+        sendPromptToLLM("/api/generate-arguments", caseDetails);
+        userInput.value = '';
+    }
+});
+
+analysisBtn.addEventListener('click', () => {
+    const caseDetails = userInput.value.trim();
+    if (caseDetails) {
+        addMessage(caseDetails, true);
+        sendPromptToLLM("/api/analyze-evidence", caseDetails);
+        userInput.value = '';
+    }
+});
+
+
+
+// IPC Section Finder
 function searchIPC() {
     const input = document.getElementById('ipcInput').value.trim().toLowerCase();
     const result = document.getElementById('ipcResult');
@@ -159,7 +206,8 @@ function searchIPC() {
     result.innerHTML = found ? `✅ ${found[1]}` : "❌ No IPC section found. Try another term.";
 }
 
-// Load everything
+// Initialize
 document.addEventListener('DOMContentLoaded', () => {
     fetchNews();
+    setInterval(fetchNews, 30000);
 });
