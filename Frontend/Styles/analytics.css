@@ -1,0 +1,97 @@
+ body {
+     background-color: #fff8f0;
+     font-family: 'Segoe UI', sans-serif;
+ }
+
+ .main-content {
+     margin-left: 240px;
+     padding: 30px;
+     background: linear-gradient(to bottom right, #fbeeca, #fdfaf6);
+ }
+
+ .analytics-container h1 {
+     font-weight: bold;
+     color: #b03a2e;
+ }
+
+ .stat-card {
+     background: #fff3e0;
+     border-radius: 12px;
+     padding: 20px;
+     display: flex;
+     align-items: center;
+     margin-bottom: 20px;
+     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+ }
+
+ .stat-icon {
+     font-size: 28px;
+     padding: 18px;
+     border-radius: 50%;
+     color: white;
+     margin-right: 15px;
+ }
+
+ .bg-ipc {
+     background-color: #d35400;
+ }
+
+ .bg-bail {
+     background-color: #27ae60;
+ }
+
+ .bg-pending {
+     background-color: #f1c40f;
+ }
+
+ .bg-conviction {
+     background-color: #8e44ad;
+ }
+
+ .chart-card {
+     background: #fff;
+     border-radius: 12px;
+     padding: 20px;
+     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+     height: 100%;
+ }
+
+ .chart-container {
+     height: 300px;
+ }
+
+ .sidebar {
+     position: fixed;
+     left: 0;
+     top: 0;
+     width: 240px;
+     height: 100%;
+     background-color: #b03a2e;
+     color: white;
+     padding-top: 20px;
+ }
+
+ .sidebar h3 {
+     padding: 15px;
+     text-align: center;
+     font-size: 24px;
+     font-weight: bold;
+ }
+
+ .sidebar-menu {
+     list-style: none;
+     padding: 0;
+     margin-top: 30px;
+ }
+
+ .sidebar-menu li a {
+     display: block;
+     padding: 12px 20px;
+     color: white;
+     text-decoration: none;
+ }
+
+ .sidebar-menu li a:hover,
+ .sidebar-menu li a.active {
+     background-color: #922b21;
+ }
