@@ -399,6 +399,7 @@
 # llm_service.py
 import google.generativeai as genai
 import os
+from modules.ragsys import get_similar_cases
 
 # ✅ Configure Gemini API Key
 genai.configure(
@@ -437,62 +438,82 @@ def classify_query(text):
         return "general"
 
 
+# 📚 Fetch top-k similar cases using RAG
+def fetch_context(user_input, k=3):
+    similar = get_similar_cases(user_input, k)
+    context = "\n\n".join(
+        [f"Similar Case {i+1}:\n{text['text']}" for i, text in enumerate(similar)]
+    )
+    return context
+
+
+# 🔍 Case Analysis (with similar cases)
 def analyze_case(text):
+    context = fetch_context(text)
     return model.generate_content(
         f"""
-You are an expert legal analyst. Analyze the following case and identify:
-- The key pieces of evidence or testimony mentioned
-- Which parts of the case are weak or vulnerable
-- Which aspects are strong or favorable
-- Any critical points that require further clarification
+You are an expert legal analyst. Analyze the following case using both the case and similar precedents.
 
-Structure your analysis clearly with bullet points or short sections.
-Give short answer, no more than 1-2 sentences per point.
-Case details:
+Case:
 {text}
+
+Similar Cases:
+{context}
+
+Identify:
+- Key evidence or testimony
+- Weak/vulnerable parts
+- Strong/favorable parts
+- Critical unclear points
+
+Use short, clear bullet points. Max 1–2 sentences each.
 """
     ).text.strip()
 
 
+# 🗺️ Legal Roadmap Generator (with similar cases)
 def generate_roadmap(text):
+    context = fetch_context(text)
     return model.generate_content(
         f"""
-You are a highly experienced legal expert known for creating step-by-step legal roadmaps.
-Given the following legal case, provide a clear, detailed, and logical roadmap that outlines the key steps a lawyer should take to win or strengthen the case.
+You are a legal expert known for creating actionable legal roadmaps. Given the case and similar examples, provide a plan to win the case.
 
-Be specific about:
-- Filing or documentation steps
-- Evidence collection or witness preparation
-- Legal arguments to be prepared
-- Important legal procedures or deadlines
-
-Present the roadmap in bullet points or numbered steps. and keep it short not very detailed
-Give short answer, no more than 1-2 sentences per point.
-
-Case details:
+Case:
 {text}
+
+Similar Cases:
+{context}
+
+Include steps like:
+- Documentation
+- Evidence collection
+- Argument strategy
+- Deadlines
+
+Use bullets or numbered steps. Short, to-the-point answers.
 """
     ).text.strip()
 
 
+# ⚖️ Legal Arguments Generator (with similar cases)
 def generate_arguments(text):
+    context = fetch_context(text)
     return model.generate_content(
         f"""
-You are a senior legal strategist. Given the following legal case, generate powerful and well-reasoned legal arguments that a lawyer could use in court to support their client.
+You are a senior legal strategist. Using the case and past similar cases, generate strong legal arguments for court.
 
-Focus on:
-- How existing facts support the client’s position
-Give arguements in small points by using earlier similar cases and tell in plain english you can speak these in court:-
-Structure your response as bullet points for each argument in short
-Give short answer, no more than 1-2 sentences per point.
-
-Case details:
+Case:
 {text}
+
+Similar Cases:
+{context}
+
+Bullet points only. Use plain English. Each point should be a concise, court-usable argument.
 """
     ).text.strip()
 
 
-# 🔄 Unified handler
+# 🔄 Unified Query Processor
 def process_llm_query(user_input):
     query_type = classify_query(user_input)
 
